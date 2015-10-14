@@ -1,8 +1,19 @@
-<%= link_to "Novo projeto" %>
-
 <table>
-  
+
 <% @projects.each do |proj| %>
 
 <% end %>
 </table
+
+<table>
+  <tr>
+    <td>Projetos</td>
+    <td>Cliente</td>
+  </tr>
+  <% @projects.each do |proj| %>
+  <tr>
+    <td><%= proj.title %></td>
+    <td><%= proj.user.username %></td>
+  </tr>
+  <% end %>
+</table>

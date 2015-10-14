@@ -6,7 +6,11 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @customers = User.all
-    @projects = Projects.all.limit
+    if current_user.present?
+      @customers = User.all
+      @projects = Project.limit(10)
+    else
+      redirect_to new_user_session_path
+    end
   end
 end

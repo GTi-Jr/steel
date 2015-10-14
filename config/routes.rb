@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
+  root 'pages#dashboard'
+
   devise_for :users
   devise_scope :user do
-    get "log_in" => "devise/sessions#new"
+    get 'log_in' => 'devise/sessions#new'
 
-    root 'pages#home'
+
   end
 
   resources :projects
   resources :notices
   resources :photos
   resources :documents
+
+  get '/dashboard' => 'pages#dashboard'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

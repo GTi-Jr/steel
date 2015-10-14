@@ -11,7 +11,7 @@
       <div class="nav-wrapper">
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <% if user_signed_in? %>
-          <li>Logado como <%= current_user.email %></li>
+          <li>Logado como <b><%= current_user.username %></b></li>
           <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
           <% else %>
           <li><%= link_to "Log in", new_user_session_path %></li>
