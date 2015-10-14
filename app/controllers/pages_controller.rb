@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   #usuario comum
   def dashboard
     if current_user.present? && current_user.is_admin?
-      render :admin #renderiza a dashboard_admin
+      redirect_to admin_url #renderiza a dashboard_admin
     elsif current_user.present?
       @projects = Project.where(user_id: current_user.id).limit(10)
     else
