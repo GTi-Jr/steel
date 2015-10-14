@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  layout "blank"
+  layout "dashboard"
 
   def home
     redirect_to projects_path if current_user.present?

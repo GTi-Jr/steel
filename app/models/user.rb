@@ -4,5 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :notices
+  has_many :projects
+
+  def is_admin?
+    admin
+  end
 end
