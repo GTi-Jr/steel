@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  layout "dashboard"
   before_action :load_project, only: [:show, :edit, :update, :destroy]
   def index
     @projects = Project.all

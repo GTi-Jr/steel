@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Steel</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if user_signed_in? %>
+          <li>Logado como <%= current_user.email %></li>
+          <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Log in", new_user_session_path %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <%= yield %>
+  </body>
+</html>

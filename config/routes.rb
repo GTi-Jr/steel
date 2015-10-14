@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "log_in" => "devise/sessions#new"
 
-    root 'devise/sessions#new'
+    root 'pages#home'
   end
 
   resources :projects
