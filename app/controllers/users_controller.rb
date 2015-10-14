@@ -31,6 +31,14 @@ class UsersController < ApplicationController
       end
   end
 
+  def customers
+    @users = User.where(admin: false)
+  end
+
+  def admins
+    @users = User.where(admin: true) 
+  end
+
   private
   def load_user
     @user = User.find(params[:id])
