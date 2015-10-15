@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    session[:user_id] = params[:id]
   end
 
   def new
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def admins
-    @users = User.where(admin: true) 
+    @users = User.where(admin: true)
   end
 
   private

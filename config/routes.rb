@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'pages#dashboard'
   get '/admin' => 'pages#dashboard_admin'
+  get '/customers' => 'user#customers'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

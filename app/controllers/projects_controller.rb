@@ -5,6 +5,10 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def show
+    session[:project_id] = params[:id]
+  end
+
   def new
     @project = Project.new if current_user.admin
   end
@@ -12,16 +16,13 @@ class ProjectsController < ApplicationController
   def create
     if current_user.admin
       @project = Project.new(project_params)
-
+      @project[:user_id] = session[:user_id]
       if @project.save
         redirect_to root_path
       else
         render "new"
       end
     end
-  end
-
-  def show
   end
 
   def edit
