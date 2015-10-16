@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
+  layout "dashboard"
+
   before_action :load_user, only: [:show, :edit, :update]
+  
   def index
       @users = User.all
   end

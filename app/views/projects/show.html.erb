@@ -12,6 +12,6 @@
 
 <%= link_to "Marcar projeto como completado.", project_complete_project_path(@project), method: :patch %>
 
-<%= link_to "Voltar", user_path(@project.user) %>
 <%= link_to "Início", root_path %>
+<%= link_to @project.user.username, user_path(@project.user) %>
 
