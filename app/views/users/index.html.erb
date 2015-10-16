@@ -1,5 +1,13 @@
-<% @users.each do |user| %>
-  <p><%= link_to "#{user.username}, #{user.email}", user_path(user) %></p>
-<% end %>
+<table>
+  <tr>
+    <td>Usuários</td>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to "#{user.username}, #{user.email}", user_path(user) %></td>
+    </tr>
+  <% end %>
+</table>
 
-<%= link_to "Voltar", root_path %>
+<p><%= link_to "Início", root_path %></p>
+<p><%= link_to "Voltar", root_path %></p>  

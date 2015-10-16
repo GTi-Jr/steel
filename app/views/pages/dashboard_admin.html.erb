@@ -6,11 +6,26 @@
 <%= link_to "Administradores", admins_users_path %>
 
 
-<h3>Projetos ativos</h3>
-<% if @projects %>
-  <% @projects.each do |project| %>
-    <p><%= link_to project.name, project_path(project)  %></p>
+<table>
+  <tr>
+    <td>Projetos ativos</td> 
+  </tr>
+  <% if @projects %>
+    <% @projects.each do |project| %>
+      <tr>
+        <td>
+          <p><%= link_to project.name, project_path(project)  %></p>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
+</table>
+
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= link_to "#{user.username}, #{user.email}", user_path(user) %></td>
+  </tr>
 <% end %>
 
 <%  %>

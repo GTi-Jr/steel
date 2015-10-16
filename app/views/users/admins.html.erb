@@ -1,11 +1,11 @@
 <table>
   <tr>
-    Administradores
+    <td>Administradores</td>
   </tr>
   <% @users.each do |customer|%>
-    <td>
-      <%= link_to customer.username, user_path(customer) %>
-    </td>
+    <tr>
+      <td><%= link_to customer.username, user_path(customer) %></td> 
+    </tr>
   <% end %>
 </table>
 
