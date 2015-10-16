@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    Administradores
+  </tr>
+  <% @users.each do |customer|%>
+    <td>
+      <%= link_to customer.username, user_path(customer) %>
+    </td>
+  <% end %>
+</table>
+
+<p><%= link_to "Início", root_path %></p>
