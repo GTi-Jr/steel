@@ -8,13 +8,10 @@ Rails.application.routes.draw do
 
   scope "/admin" do
     resources :users do
-      member do
-        get :customers
-        get :admins
-      end
-
       collection do
         post :create_admin
+        get :customers
+        get :admins
       end
     end
   end
