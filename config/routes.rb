@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   scope "/admin" do
     resources :users do
+      member do
+        get :customers
+        get :admins
+      end
+
       collection do
         post :create_admin
       end
@@ -27,7 +32,7 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'pages#dashboard'
   get '/admin' => 'pages#dashboard_admin'
-  get '/customers' => 'user#customers'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
