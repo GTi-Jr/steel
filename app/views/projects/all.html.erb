@@ -1,0 +1,17 @@
+<% @projects.each do |proj| %>
+
+<% end %>
+</table
+
+<table>
+  <tr>
+    <td>Projetos</td>
+    <td>Cliente</td>
+  </tr>
+  <% @projects.each do |proj| %>
+  <tr>
+    <td><%= proj.name %></td>
+    <td><%= proj.user.username %></td>
+  </tr>
+  <% end %>
+</table>

@@ -1,20 +1,26 @@
 class ProjectsController < ApplicationController
   layout "dashboard"
-  before_action :load_project, only: [:show, :edit, :update, :destroy]
+  before_action :load_project, only: [:show, :edit, :update, :destroy, :complete, :uncomplete]
+
   def index
-    @projects = Project.all
+    if current_user.is_admin?
+      @projects = Project.all
+    else
+      @projects = Project.where(user_id: current_user.id)
+    end  
   end
 
   def show
     session[:project_id] = params[:id]
+    @notices = @project.notices.order("created_at DESC")
   end
 
   def new
-    @project = Project.new if current_user.admin
+    @project = Project.new if current_user.is_admin?
   end
 
   def create
-    if current_user.admin
+    if current_user.is_admin?
       @project = Project.new(project_params)
       @project[:user_id] = session[:user_id]
       if @project.save
@@ -29,7 +35,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if current_user.admin
+    if current_user.is_admin?
       if @project.update(project_params)
         redirect_to root_path
       else
@@ -38,8 +44,9 @@ class ProjectsController < ApplicationController
     end
   end
 
+  #NUNCA USAR
   def destroy
-    if current_user.admin
+    if current_user.is_admin?
       if @project.destroy
         redirect_to root_path
       else
@@ -48,9 +55,25 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def complete
+    if current_user.is_admin?
+      @project.update_attribute(:completed, true)
+      redirect_to project_path(@project)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def uncomplete
+    if current_user.is_admin?
+      @project.update_attribute(:completed, false)
+    else
+    end
+  end
+
   private
     def project_params
-      params.require(:project).permit(:name)
+      params.require(:project).permit(:name, :description)
     end
 
     def load_project

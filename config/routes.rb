@@ -7,10 +7,20 @@ Rails.application.routes.draw do
   end
 
   scope "/admin" do
-    resources :users
+    resources :users do
+      collection do
+        post :create_admin
+      end
+    end
   end
 
-  resources :projects
+  resources :projects do    
+    member do
+      patch :complete, as: :project_complete
+      patch :uncomplete, as: :project_uncomplete
+    end
+  end
+
   resources :notices
   resources :photos
   resources :documents

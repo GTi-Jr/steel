@@ -1,3 +1,5 @@
 <% @users.each do |user| %>
   <p><%= link_to "#{user.username}, #{user.email}", user_path(user) %></p>
 <% end %>
+
+<%= link_to "Voltar", root_path %>

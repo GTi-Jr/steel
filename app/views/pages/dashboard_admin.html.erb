@@ -1,5 +1,8 @@
 <%= link_to "Cadastrar cliente", new_user_path %>
+<%= link_to "Cadastrar administrador", create_admin_users_path %>
 <%= link_to "Clientes", users_path %>
+<%= link_to "Todos os projetos", projects_path %>
+
 <h3>Projetos ativos</h3>
 <% if @projects %>
   <% @projects.each do |project| %>

@@ -1,0 +1,17 @@
+<h3>
+  <%= @project.name %>
+  <%= "- Terminado" if @project.completed? %>
+</h3>
+<p><%= @project.description %></p>
+<p><%= link_to "Adicionar notificação", new_notice_path %></p>
+
+<% @notices.each do |notice| %>
+  <p><b><%= notice.title %></b></p>
+  <p><%= notice.title %></p>
+<% end %>
+
+<%= link_to "Marcar projeto como completado.", project_complete_project_path(@project), method: :patch %>
+
+<%= link_to "Voltar", user_path(@project.user) %>
+<%= link_to "Início", root_path %>
+

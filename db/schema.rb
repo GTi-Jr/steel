@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015010954) do
+ActiveRecord::Schema.define(version: 20151015141141) do
 
   create_table "documents", force: :cascade do |t|
     t.string   "url"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20151015010954) do
     t.string   "name"
     t.boolean  "completed",   default: false
     t.text     "description"
+    t.boolean  "canceled",    default: false
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id"
