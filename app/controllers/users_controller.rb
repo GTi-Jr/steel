@@ -43,12 +43,18 @@ class UsersController < ApplicationController
     @users = User.where(admin: true)
   end
 
+  def new_admin
+    if current_user.is_admin?
+      @user = User.new
+    end
+  end
+
   def create_admin
     if current_user.is_admin?
-      @user = Project.new(project_params)
+      @user = User.new(user_params)
       @user[:admin] = true
 
-      if @project.save
+      if @user.save
         redirect_to root_path
       else
         render "new"

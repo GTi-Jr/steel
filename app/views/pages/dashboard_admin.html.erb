@@ -1,31 +1,27 @@
 <%= link_to "Cadastrar cliente", new_user_path %>
-<%= link_to "Cadastrar administrador", create_admin_users_path %>
+<%= link_to "Cadastrar administrador", new_admin_users_path %>
 <%= link_to "Todos os usuários", users_path %>
 <%= link_to "Todos os projetos", projects_path %>
 <%= link_to "Clientes", customers_users_path %>
 <%= link_to "Administradores", admins_users_path %>
 
-
-<table>
+<h3>Projetos ativos</h3>
+<table border="1">
   <tr>
-    <td>Projetos ativos</td> 
+    <td>Projeto</td>
+    <td>Cliente</td> 
   </tr>
   <% if @projects %>
     <% @projects.each do |project| %>
       <tr>
         <td>
-          <p><%= link_to project.name, project_path(project)  %></p>
+          <%= link_to project.name, project_path(project)  %>
+        </td>
+        <td>
+          <%= link_to project.user.username, user_path(project.user) %>
         </td>
       </tr>
     <% end %>
   <% end %>
 </table>
 
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= link_to "#{user.username}, #{user.email}", user_path(user) %></td>
-  </tr>
-<% end %>
-
-<%  %>
