@@ -14,8 +14,8 @@
 <% end %>
 
 <% if current_user.is_admin? %>
-  <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch if @project.completed? %>
-  <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch if !@project.completed? %>
+  <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch if @project.uncompleted? %>
+  <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch if @project.completed? %>
 <% end %>
 
 <%= link_to "Início", root_path %>

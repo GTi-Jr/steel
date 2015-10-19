@@ -69,6 +69,7 @@ class ProjectsController < ApplicationController
   def uncomplete
     if current_user.is_admin?
       @project.update_attribute(:completed, false)
+      redirect_to project_path(@project)
     else
       redirect_to root_path
     end

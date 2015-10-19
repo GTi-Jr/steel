@@ -3,6 +3,10 @@ class Project < ActiveRecord::Base
   belongs_to :user
 
   def completed?
-    completed
+    self.completed
+  end
+
+  def uncompleted?
+    !self.completed
   end
 end
