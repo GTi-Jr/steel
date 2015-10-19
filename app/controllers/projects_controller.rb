@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     if current_user.is_admin?
-      @projects = Project.all
+      @projects = Project.order("created_at DESC")
     else
       @projects = Project.where(user_id: current_user.id)
     end  
@@ -28,6 +28,8 @@ class ProjectsController < ApplicationController
       else
         render "new"
       end
+    else
+      redirect_to root_path
     end
   end
 
@@ -68,6 +70,7 @@ class ProjectsController < ApplicationController
     if current_user.is_admin?
       @project.update_attribute(:completed, false)
     else
+      redirect_to root_path
     end
   end
 

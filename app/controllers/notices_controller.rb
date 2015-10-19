@@ -22,7 +22,7 @@ class NoticesController < ApplicationController
     @notice[:project_id] = session[:project_id]
 
     if @notice.save
-      redirect_to notice_path(@notice)
+      redirect_to project_path(@notice.project)
     else
       render :new
     end
