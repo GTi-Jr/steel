@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   scope "/admin" do
     resources :users do
       collection do
-        get 'new_admin'
+        get :new_admin
         post :create_admin
         get :customers
         get :admins

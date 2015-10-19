@@ -1,3 +1,5 @@
 <h3><%= @notice.title %></h3>
 <p><%= @notice.description %></p>
-<p><%= link_to %></p>
+<p><%= link_to "Início", root_path %></p>
+<p><%= link_to "Ver projeto", project_path(@notice.project) %></p>
+<p><%= link_to "Ver cliente", user_path(@notice.project.user) if current_user.is_admin? %></p>

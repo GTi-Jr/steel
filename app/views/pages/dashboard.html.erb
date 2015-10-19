@@ -1,0 +1,15 @@
+<h3>Projetos</h3>
+<table border="1">
+  <tr>
+    <td>Projeto</td>
+  </tr>
+  <% if @projects %>
+    <% @projects.each do |project| %>
+      <tr>
+        <td>
+          <%= link_to project.name, project_path(project)  %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -10,7 +10,11 @@ class NoticesController < ApplicationController
   end
 
   def new
-    @notice = Notice.new
+    if current_user.is_admin?
+      @notice = Notice.new
+    else
+      redirect_to project_path(Project.find(session[:project_id]))
+    end
   end
 
   def create
