@@ -18,9 +18,13 @@ Rails.application.routes.draw do
   end
 
   resources :projects do    
+    collection do
+      get :canceled
+    end
+
     member do
-      patch :complete, as: :project_complete
-      patch :uncomplete, as: :project_uncomplete
+      patch :complete, as: :complete
+      patch :uncomplete, as: :uncomplete
     end
   end
 

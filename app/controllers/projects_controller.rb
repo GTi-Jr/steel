@@ -71,6 +71,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def canceled
+    if current_user.is_admin?
+      @projects = Project.where(canceled: true)
+    else
+      @projects = Project.where("user_id = :user_id and canceled = :canceled", { user_id: current_user.id, canceled: true })
+    end
+  end
+
   private
     def project_params
       params.require(:project).permit(:name, :description)
