@@ -16,3 +16,20 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.no-margins {
+  margin: 0 !important;
+}
+
+.notices {
+  width: 100%;
+}
+
+.top-10 {
+  margin-top: 10%;
+}
+
+.bg-login {
+  background-color: #E7EEDD;
+}
