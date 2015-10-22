@@ -2,10 +2,10 @@
   <%= @project.name %>
   <%= " - Terminado" if @project.completed? %>
 </h3>
+<p><%= link_to "Adicionar notificação", new_notice_path, class: "btn btn-success pull-right"  if current_user.is_admin? %></p>
 
 <div class="well">
-  <p><%= @project.description %></p>
-  <p><%= link_to "Adicionar notificação", new_notice_path  if current_user.is_admin? %></p>
+  <p><%= @project.description %></p>  
   <p class="pull-right small">Projeto adicionado em <%= @project.created_at %></p>
 </div>
 
@@ -15,10 +15,25 @@
   <div class="col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <%= link_to notice.title, notice_path(notice) %>
+        <% title = truncate notice.title, length: 40 %>
+        <% if current_user.is_admin? %>
+        <%= link_to title, notice_path(notice) %>
+          <ul class="pull-right inline">
+            <li>
+              <%= link_to edit_notice_path(notice) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to notice_path(notice), method: :destroy do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
       </div>
       <div class="panel-body">
-        <p><%= notice.description %></p>
+        <p><%= truncate notice.description, length: 100 %></p>
       </div>
       <div class="panel-footer">
         <%= link_to "Ver notificação", notice_path(notice) %>
@@ -33,12 +48,13 @@
 <% end %>
 </div>
 
+<%= link_to "Início", root_path, class: "btn btn-primary" %>
+
 <% if current_user.is_admin? %>
-  <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch if @project.uncompleted? %>
-  <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch if @project.completed? %>
-  <%= link_to "Ver cliente", user_path(@project.user)%>
+  <%= link_to "Ver cliente", user_path(@project.user), class: "btn btn-primary" %>
+  <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: "O projeto foi realmente complatado?" }  if @project.uncompleted? %>
+  <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch, class: "btn btn-danger", data: { confirm: "Deseja reativar o projeto?" } if @project.completed? %>
 <% end %>
 
-<%= link_to "Início", root_path, class: "btn btn-success" %>
 
 
