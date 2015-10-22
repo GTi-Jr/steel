@@ -11,33 +11,9 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require dataTables/jquery.dataTables
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-
-.no-margins {
-  margin: 0 !important;
-}
-
-.notices {
-  width: 100%;
-}
-
-.top-10 {
-  margin-top: 10%;
-}
-
-.bg-login {
-  background-color: #E7EEDD;
-}
-
-.white-text {
-  color: white !important;
-}
-
-.btn.white-text:hover {
-  color: #333 !important;
-}

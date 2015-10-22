@@ -1,15 +1,21 @@
-<h3>Projetos</h3>
-<table border="1">
-  <tr>
-    <td>Projeto</td>
-  </tr>
-  <% if @projects %>
-    <% @projects.each do |project| %>
-      <tr>
-        <td>
-          <%= link_to project.name, project_path(project)  %>
-        </td>
-      </tr>
-    <% end %>
+<h3 class="text-center">Projetos</h3>
+<div class="table-responsive">
+  <% if @projects.empty? %>
+    <p class="text-center">Nenhum projeto existente. Em breve seu projeto será adicionado pelo administrador.</p>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <th>#</th>
+        <th>Nome</th>
+      </thead>
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.id %></td>
+            <td><%= link_to project.name, project_path(project) %></td>      
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
-</table>
+</div>
