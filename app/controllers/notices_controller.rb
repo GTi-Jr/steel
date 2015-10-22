@@ -1,4 +1,5 @@
 class NoticesController < ApplicationController
+  layout "dashboard"
   before_action :load_notice, only: [:show]
 
   def index
