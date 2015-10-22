@@ -1,0 +1,32 @@
+.no-margins {
+  margin: 0 !important;
+}
+
+.notices {
+  width: 100%;
+}
+
+.top-10 {
+  margin-top: 10%;
+}
+
+.bg-whiteish {
+  background-color: #E7EEDD;
+}
+
+.white-text {
+  color: white !important;
+}
+
+.btn.white-text:hover {
+  color: #333 !important;
+}
+
+td.project-name a {
+  width: 100%;
+  height: 100%;
+}
+
+ul.inline > li {
+  display: inline-block;
+}
