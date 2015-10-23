@@ -1,28 +1,31 @@
 <h3 class="text-center">Projetos ativos</h3>
-<table class="table table-striped">
-  <thead>
-    <th>Nome</th>
-    <th>Status</th>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
-      <% if project.completed? %>
-        <tr class="bg-success">
-          <td><%= link_to project.name, project_path(project) %></td>      
-          <td>Completado</td>
-        </tr>
-      <% elsif project.canceled? %>
-        <tr class="bg-danger">
-          <td><%= link_to project.name, project_path(project) %></td>    
-          <td>Cancelado</td>  
-        </tr>
-      <% else %>
-        <tr>
-          <td><%= link_to project.name, project_path(project) %></td>     
-          <td>Em andamento</td> 
-        </tr>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <% if project.completed? %>
+          <tr class="bg-success">
+            <td><%= link_to project.name, project_path(project) %></td>      
+            <td>Completado</td>
+          </tr>
+        <% elsif project.canceled? %>
+          <tr class="bg-danger">
+            <td><%= link_to project.name, project_path(project) %></td>    
+            <td>Cancelado</td>  
+          </tr>
+        <% else %>
+          <tr>
+            <td><%= link_to project.name, project_path(project) %></td>     
+            <td>Em andamento</td> 
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
