@@ -5,15 +5,27 @@
   <% else %>
     <table class="table table-striped">
       <thead>
-        <th>#</th>
         <th>Nome</th>
+        <th>Status</th>
       </thead>
       <tbody>
         <% @projects.each do |project| %>
-          <tr>
-            <td><%= project.id %></td>
-            <td><%= link_to project.name, project_path(project) %></td>      
-          </tr>
+          <% if project.completed? %>
+            <tr class="bg-success">
+              <td><%= link_to project.name, project_path(project) %></td>
+              <td>Completo</td>      
+            </tr>
+          <% elsif project.canceled? %>
+            <tr class="bg-danger">
+              <td><%= link_to project.name, project_path(project) %></td> 
+              <td>Cancelado</td>     
+            </tr>
+          <% else %>
+            <tr>
+              <td><%= link_to project.name, project_path(project) %></td>  
+              <td>Em andamento</td>    
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
