@@ -9,4 +9,8 @@ class Project < ActiveRecord::Base
   def uncompleted?
     !self.completed
   end
+
+  def canceled?
+    self.canceled
+  end
 end
