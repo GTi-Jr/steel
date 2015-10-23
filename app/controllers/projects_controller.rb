@@ -2,23 +2,33 @@ class ProjectsController < ApplicationController
   layout "dashboard"
   before_action :load_project, only: [:show, :edit, :update, :destroy, :complete, :uncomplete]
 
+  # Lista todos os projetos
+  ## Caso admin, lista todos
+  ## Caso usuário comum, lista apenas os próprios
   def index
     if current_user.is_admin?
       @projects = Project.order("created_at DESC")
     else
-      @projects = Project.where(user_id: current_user.id)
+      @projects = Project.where(user_id: current_user.id).order("created_at DESC")
     end  
   end
 
+  #Mostra o projeto
   def show
     session[:project_id] = params[:id]
     @notices = @project.notices.order("created_at DESC")
   end
 
+  #Página para criar um projeto
   def new
-    @project = Project.new if current_user.is_admin?
+    if current_user.is_admin?
+      @project = Project.new
+    else
+      redirect_to root_path
+    end
   end
 
+  #Cria um projeto
   def create
     if current_user.is_admin?
       @project = Project.new(project_params)
@@ -33,7 +43,9 @@ class ProjectsController < ApplicationController
     end
   end
 
+  #Página para editar um projeto
   def edit
+    redirect_to root_path unless current_user.is_admin?
   end
 
   def update
@@ -46,7 +58,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-  #NUNCA USAR
+  #NUNCA USAR *********************************
+  ## Apaga, permanentemente, o projeto
   def destroy
     if current_user.is_admin?
       if @project.destroy
@@ -56,7 +69,9 @@ class ProjectsController < ApplicationController
       end
     end
   end
+  # *******************************************
 
+  # Lista os projetos que estão completos
   def complete
     if current_user.is_admin?
       @project.update_attribute(:completed, true)
@@ -66,6 +81,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Lista os projetos que não estão completos
   def uncomplete
     if current_user.is_admin?
       @project.update_attribute(:completed, false)
@@ -75,6 +91,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Lista os projetos cancelados
   def canceled
     if current_user.is_admin?
       @projects = Project.where(canceled: true)
@@ -84,10 +101,12 @@ class ProjectsController < ApplicationController
   end
 
   private
+    # Strong Parameters
     def project_params
       params.require(:project).permit(:name, :description)
     end
 
+    # Pega os parametros para carregar o projeto do banco de dados
     def load_project
       @project = Project.find(params[:id])
     end
