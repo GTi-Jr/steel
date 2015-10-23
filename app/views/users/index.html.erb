@@ -1,13 +1,25 @@
-<table>
-  <tr>
-    <td>Usuários</td>
-  </tr>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to "#{user.username}, #{user.email}", user_path(user) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Tipo</th>
+      <th>Projetos ativos</th>
+      <th>Projetos</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
 
-<p><%= link_to "Início", root_path %></p>
-<p><%= link_to "Voltar", root_path %></p>  
+        <tr class="">
+          <td><%= link_to user.username, user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= user.is_admin? ? "Administrador" : "Comum" %></td> 
+          <td>Adicionar</td>     
+          <td>Adicionar</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<p><%= link_to "Início", root_path, class: "btn btn-primary" %></p>
