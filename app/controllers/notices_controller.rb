@@ -1,6 +1,6 @@
 class NoticesController < ApplicationController
   layout "dashboard"
-  before_action :load_notice, only: [:show]
+  before_action :load_notice, only: [:show, :edit, :update]
 
   def index
     @notices = Notice.where(project_id: session[:project_id])
@@ -26,6 +26,35 @@ class NoticesController < ApplicationController
       redirect_to project_path(@notice.project)
     else
       render :new
+    end
+  end
+
+  def edit        
+    @notice = Notice.find(params[:id])
+  end
+
+  def update
+    if current_user.is_admin?
+      if @notice.update_attributes(notice_params)  
+        redirect_to project_path(@notice.project)
+      else  
+        render :edit
+      end
+    else
+      redirect_to root_path
+    end
+  end
+
+  def destroy
+    auxiliar_notice = @notice
+    if current_user.is_admin?
+      if @notice.destroy
+        redirect_to project_path(auxiliar_notice.project)
+      else
+        redirect_to project_path(auxiliar_notice.project)
+      end
+    else
+      redirect_to root_path
     end
   end
 
