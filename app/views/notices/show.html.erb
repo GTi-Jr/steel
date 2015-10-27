@@ -1,5 +1,7 @@
 <h3><%= @notice.title %></h3>
-<p><%= @notice.description %></p>
-<p><%= link_to "Início", root_path %></p>
-<p><%= link_to "Ver projeto", project_path(@notice.project) %></p>
-<p><%= link_to "Ver cliente", user_path(@notice.project.user) if current_user.is_admin? %></p>
+<div class="well">
+  <%= @notice.description %>
+</div>  
+<%= link_to "Início", root_path, class: "btn btn-primary" %>
+<%= link_to "Ver projeto", project_path(@notice.project), class: "btn btn-primary" %>
+<%= link_to "Ver cliente", user_path(@notice.project.user), class: "btn btn-primary" if current_user.is_admin? %>

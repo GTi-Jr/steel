@@ -1,15 +1,33 @@
-<%= form_for(@project) do |f| %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+<div class="container">
+  <div class="row ">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title text-center">Cadastro de projeto</h3>
+        </div>
+        <div class="panel-body">
+          <%= form_for @project do |f| %>
+            <div class="form-group">
+              <%= f.label :name, "Nome", class: "text-center" %><br />
+              <%= f.text_field :name, autofocus: true, class: "form-control" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :description, "Nome", class: "text-center" %><br />
+              <%= f.text_area :description, class: "form-control" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+            <div class="actions">
+              <%= f.submit "Criar projeto", class: "btn btn-lg btn-success btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <p class="text-center">
+      <div class="text-center">
+        <%= link_to "Voltar", user_path(session[:user_id]), class: "btn btn-primary text" %>
+        <%= link_to "Início", root_path, class: "btn btn-primary text" %></p>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Criar" %>
-  </div>
-<% end %>
+</div>
