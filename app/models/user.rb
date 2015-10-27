@@ -6,10 +6,14 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true       
   has_many :projects
 
+  # Verifica se o usuário é administrador
   def is_admin?
     admin
   end
 
+  # Verifica se o usuário possui algum projeto ativo
+  # * A função pára no primeiro projeto que estiver incompleto
+  # * Caso não haja projetos incompletos, retorna +false+
   def has_any_active_project?
     self.projects.each { |project| return true if project.uncompleted? }
     false
