@@ -15,7 +15,10 @@ class PagesController < ApplicationController
   #usuario admin
   def dashboard_admin
     if current_user.present? && current_user.is_admin?
-      @projects = Project.where(completed: false).order("created_at DESC")
+      #@projects = Project.where(completed: false).order("created_at DESC")
+      @projects = Project.where(["completed = :completed and canceled = :canceled",
+                                { completed: false,
+                                  canceled: false }]).order("created_at DESC")
     else
       redirect_to new_user_session_path
     end

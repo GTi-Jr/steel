@@ -2,6 +2,7 @@
   <table class="table table-striped">
     <thead>
       <th>Nome</th>
+      <th>Usuário</th>
       <th>Email</th>
       <th>Tipo</th>
       <th>Projetos ativos</th>
@@ -11,6 +12,7 @@
       <% @users.each do |user| %>
 
         <tr class="">
+          <td><%= link_to user.name, user_path(user) %></td>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.email %></td>
           <td><%= user.is_admin? ? "Administrador" : "Comum" %></td> 

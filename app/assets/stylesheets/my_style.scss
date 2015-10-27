@@ -18,6 +18,10 @@
   color: white !important;
 }
 
+.red-text {
+  color: #d9534f !important;
+}
+
 .btn.white-text:hover {
   color: #333 !important;
 }
@@ -34,4 +38,8 @@ ul.inline > li {
 .panel-body {
   padding: 15px;
   min-height: 100px;
+}
+
+.border-left-green {
+  border-left: solid 6px #5cb85c;
 }

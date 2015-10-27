@@ -9,22 +9,22 @@
     <tbody>
       <% @projects.each do |project| %>
         <% if project.completed? %>
-          <tr class="bg-success">
+          <tr>
             <td><%= link_to project.name, project_path(project) %></td> 
-            <td><%= link_to project.user.username, user_path(project.user) %></td>     
-            <td>Completado</td>
+            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td class="btn-success">Completado</td>
           </tr>
         <% elsif project.canceled? %>
-          <tr class="bg-danger">
+          <tr>
             <td><%= link_to project.name, project_path(project) %></td>    
-            <td><%= link_to project.user.username, user_path(project.user) %></td>     
-            <td>Cancelado</td>  
+            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td class="btn-danger"><span >Cancelado</span></td>  
           </tr>
         <% else %>
           <tr>
             <td><%= link_to project.name, project_path(project) %></td>
-            <td><%= link_to project.user.username, user_path(project.user) %></td>     
-            <td>Em andamento</td> 
+            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td class="btn-primary">Em andamento</td> 
           </tr>
         <% end %>
       <% end %>

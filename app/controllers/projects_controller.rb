@@ -101,6 +101,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Cancela o projeto
   def cancel
     if current_user.is_admin?
       @project.update_attribute(:canceled, true)
@@ -110,6 +111,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Descancela o projeto
   def uncancel
     if current_user.is_admin?
       @project.update_attribute(:canceled, false)
