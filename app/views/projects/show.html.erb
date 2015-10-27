@@ -1,6 +1,7 @@
 <h3>
   <%= @project.name %>
-  <%= " - Terminado" if @project.completed? %>
+    <%= " - Terminado" if @project.completed? %>
+    <%= " - Cancelado" if @project.canceled? %>
 </h3>
 <p><%= link_to "Adicionar notificação", new_notice_path, class: "btn btn-success pull-right"  if current_user.is_admin? %></p>
 
@@ -48,12 +49,20 @@
 <% end %>
 </div>
 
+<!-- Links -->
 <%= link_to "Início", root_path, class: "btn btn-primary" %>
-
 <% if current_user.is_admin? %>
   <%= link_to "Ver cliente", user_path(@project.user), class: "btn btn-primary" %>
-  <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: "O projeto foi realmente complatado?" }  if @project.uncompleted? %>
-  <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch, class: "btn btn-danger", data: { confirm: "Deseja reativar o projeto?" } if @project.completed? %>
+  <% if @project.uncompleted? %>
+    <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: "O projeto foi realmente complatado?" }  if @project.uncompleted? %>
+  <% else %>
+    <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch, class: "btn btn-danger", data: { confirm: "Deseja reativar o projeto?" } if @project.completed? %>
+  <% end %>
+  <% if @project.canceled? && @project.uncompleted? %>
+    <%= link_to "Reabrir projeto", uncancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: "Deseja reabrir o projeto?" } %>
+  <% elsif @project.uncompleted? %>
+    <%= link_to "Cancelar projeto", cancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: "Deseja cancelar o projeto?" } %>
+  <% end %>
 <% end %>
 
 
