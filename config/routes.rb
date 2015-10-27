@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     member do
       patch :complete, as: :complete
       patch :uncomplete, as: :uncomplete
+      patch :cancel
+      patch :uncancel
     end
   end
 

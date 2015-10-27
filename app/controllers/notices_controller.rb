@@ -1,6 +1,6 @@
 class NoticesController < ApplicationController
   layout "dashboard"
-  before_action :load_notice, only: [:show, :edit, :update]
+  before_action :load_notice, only: [:show, :edit, :update, :destroy]
 
   def index
     @notices = Notice.where(project_id: session[:project_id])

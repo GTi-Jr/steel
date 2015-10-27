@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   layout "dashboard"
-  before_action :load_project, only: [:show, :edit, :update, :destroy, :complete, :uncomplete]
+  before_action :load_project, only: [:show, :edit, :update, :destroy, :complete, 
+                                      :uncomplete, :cancel]
 
   # Lista todos os projetos
   ## Caso admin, lista todos
@@ -97,6 +98,22 @@ class ProjectsController < ApplicationController
       @projects = Project.where(canceled: true)
     else
       @projects = Project.where("user_id = :user_id and canceled = :canceled", { user_id: current_user.id, canceled: true })
+    end
+  end
+
+  def cancel
+    if current_user.is_admin?
+      @project.update_attribute(:canceled, true)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def uncancel
+    if current_user.is_admin?
+      @project.update_attribute(:canceled, false)
+    else
+      redirect_to root_path
     end
   end
 

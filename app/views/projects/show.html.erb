@@ -15,9 +15,10 @@
   <div class="col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
+        <% title = truncate notice.title, length: 50 unless current_user.is_admin? %>
+        <% title = truncate notice.title, length: 35 if current_user.is_admin? %>
+        <%= link_to title, notice_path(notice) %>
         <% if current_user.is_admin? %>
-          <% title = truncate notice.title, length: 35 %>
-          <%= link_to title, notice_path(notice) %>
           <ul class="pull-right inline">
             <li>
               <%= link_to edit_notice_path(notice) do %>
@@ -25,7 +26,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to notice_path(notice), method: :destroy do %>
+              <%= link_to notice_path(notice), method: :delete, data: { confirm: "Apagar a notícia?" } do %>
                 <span class="glyphicon glyphicon-remove"></span>
               <% end %>
             </li>
@@ -44,7 +45,6 @@
       </div>
     </div>
   </div>
-
 <% end %>
 </div>
 
