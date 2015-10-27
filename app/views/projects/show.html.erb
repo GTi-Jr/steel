@@ -15,9 +15,9 @@
   <div class="col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <% title = truncate notice.title, length: 40 %>
         <% if current_user.is_admin? %>
-        <%= link_to title, notice_path(notice) %>
+          <% title = truncate notice.title, length: 35 %>
+          <%= link_to title, notice_path(notice) %>
           <ul class="pull-right inline">
             <li>
               <%= link_to edit_notice_path(notice) do %>
