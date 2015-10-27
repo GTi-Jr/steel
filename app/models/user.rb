@@ -9,4 +9,9 @@ class User < ActiveRecord::Base
   def is_admin?
     admin
   end
+
+  def has_any_active_project?
+    self.projects.each { |project| return true if project.uncompleted? }
+    false
+  end  
 end
