@@ -1,10 +1,45 @@
-<h3><%= @user.username %></h3>
-<h4><%= @user.email %></h4>
-<p><%= link_to "Criar projeto para #{@user.username}", new_project_path %></p>
+<div class="container">
+  <%= link_to "Criar projeto para #{@user.username}", new_project_path, class: "btn btn-success pull-right" %>
+  <div class="row">
+    <div class="well">
+      <p><span class="small">Empresa: </span><b><%= @user.name %></b></p>
+      <p><span class="small">Email: </span><b><%= @user.email %></b></p>
+      <p><span class="small">Telefone: </span><b><%= @user.phone %></b></p>
+    </div>      
+  </div>
+  <div class="table-responsive">
+  <% if @user.projects.empty? %>
+    <p class="text-center">Nenhum projeto existente. Em breve seu projeto será adicionado pelo administrador.</p>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <th>Nome</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <% @user.projects.each do |project| %>
+          <% if project.completed? %>
+            <tr class="bg-success">
+              <td><%= link_to project.name, project_path(project) %></td>
+              <td>Completo</td>      
+            </tr>
+          <% elsif project.canceled? %>
+            <tr class="bg-danger">
+              <td><%= link_to project.name, project_path(project) %></td> 
+              <td>Cancelado</td>     
+            </tr>
+          <% else %>
+            <tr>
+              <td><%= link_to project.name, project_path(project) %></td>  
+              <td>Em andamento</td>    
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
 
-<% @user.projects.each do |project| %>
-  <p><%= link_to project.name, project_path(project) %></p>
-<% end %>
-
-<%= link_to "Voltar", root_path %>
-<%= link_to "Início", root_path %>
+  <%= link_to "Voltar", root_path, class: "btn btn-primary" %>
+  <%= link_to "Início", root_path, class: "btn btn-primary" %>
+</div>

@@ -1,12 +1,24 @@
-<table>
-  <tr>
-    <td>Clientes</td>
-  </tr>
-  <% @users.each do |customer|%>
-    <tr>
-      <td><%= link_to customer.username, user_path(customer) %></td> 
-    </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "Início", root_path %></p>
+<h3 class="text-center">Lista de clientes</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Empresa</th>
+      <th>Usuário</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Contato</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= link_to user.username, user_path(user) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone %></td>
+        <td><%= user.contact_name %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <%= link_to "Início", root_path, class:"btn btn-primary" %>
+</div>
