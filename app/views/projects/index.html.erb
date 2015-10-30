@@ -1,0 +1,36 @@
+<h3 class="text-center">Todos os projetos</h3>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>Cliente</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <% if project.completed? %>
+          <tr>
+            <td><%= link_to project.name, project_path(project) %></td> 
+            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td class="btn-success">Completado</td>
+          </tr>
+        <% elsif project.canceled? %>
+          <tr>
+            <td><%= link_to project.name, project_path(project) %></td>    
+            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td class="btn-danger"><span >Cancelado</span></td>  
+          </tr>
+        <% else %>
+          <tr>
+            <td><%= link_to project.name, project_path(project) %></td>
+            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td class="btn-primary">Em andamento</td> 
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <%= link_to "Início", root_path, class: "btn btn-primary" %>
+</div>
