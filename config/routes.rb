@@ -1,10 +1,41 @@
 Rails.application.routes.draw do
+  root 'pages#dashboard'
+
   devise_for :users
   devise_scope :user do
-    get "log_in" => "devise/sessions#new"
-  
-    root 'devise/sessions#new'
+    get 'log_in' => 'devise/sessions#new'
   end
+
+  scope "/admin" do
+    resources :users do
+      collection do
+        get :new_admin
+        post :create_admin
+        get :customers
+        get :admins
+      end
+    end
+  end
+
+  resources :projects do    
+    collection do
+      get :canceled
+    end
+
+    member do
+      patch :complete, as: :complete
+      patch :uncomplete, as: :uncomplete
+      patch :cancel
+      patch :uncancel
+    end
+  end
+
+  resources :notices
+  resources :photos
+  resources :documents
+
+  get '/dashboard' => 'pages#dashboard'
+  get '/admin' => 'pages#dashboard_admin'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

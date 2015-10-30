@@ -1,0 +1,71 @@
+<h3>
+  <%= @project.name %>
+    <%= " - Terminado" if @project.completed? %>
+    <%= " - Cancelado" if @project.canceled? %>
+</h3>
+<p><%= link_to "Adicionar notificação", new_notice_path, class: "btn btn-success pull-right"  if current_user.is_admin? %></p>
+
+<div class="well">
+  <p><%= @project.description %></p>  
+  <p class="pull-right small">Projeto adicionado em <%= @project.created_at %></p>
+</div>
+<div class="text-center">
+  <h3>Projetos</h3>
+</div>
+<div class="row">
+<% @notices.each do |notice| %>
+
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <% title = truncate notice.title, length: 50 unless current_user.is_admin? %>
+        <% title = truncate notice.title, length: 35 if current_user.is_admin? %>
+        <%= link_to title, notice_path(notice) %>
+        <% if current_user.is_admin? %>
+          <ul class="pull-right inline">
+            <li>
+              <%= link_to edit_notice_path(notice) do %>
+                <span class="glyphicon glyphicon-pencil"></span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to notice_path(notice), method: :delete, data: { confirm: "Apagar a notícia?" } do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="panel-body">
+        <p><%= truncate notice.description, length: 100 %></p>
+      </div>
+      <div class="panel-footer">
+        <%= link_to "Ver notificação", notice_path(notice) %>
+        <ul class="pull-right inline">
+          <li><span class="glyphicon glyphicon-picture"></span><%= notice.photos.empty? ? '0' : notice.photos.length %></li>
+          <li><span class="glyphicon glyphicon-text-size"></span><%= notice.documents.empty? ? '0' : notice.documents.length %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<!-- Links -->
+<%= link_to "Início", root_path, class: "btn btn-primary" %>
+<% if current_user.is_admin? %>
+  <%= link_to "Ver cliente", user_path(@project.user), class: "btn btn-primary" %>
+  <% if @project.uncompleted? %>
+    <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: "O projeto foi realmente complatado?" }  if @project.uncompleted? %>
+  <% else %>
+    <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch, class: "btn btn-danger", data: { confirm: "Deseja reativar o projeto?" } if @project.completed? %>
+  <% end %>
+  <% if @project.canceled? && @project.uncompleted? %>
+    <%= link_to "Reabrir projeto", uncancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: "Deseja reabrir o projeto?" } %>
+  <% elsif @project.uncompleted? %>
+    <%= link_to "Cancelar projeto", cancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: "Deseja cancelar o projeto?" } %>
+  <% end %>
+<% end %>
+
+
+

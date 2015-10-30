@@ -1,0 +1,21 @@
+<h3 class="text-center">Projetos ativos</h3>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>Cliente</th>
+      <th>Status</th>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.name, project_path(project) %></td>
+          <td><%= link_to project.user.name, user_path(project.user) %></td>     
+          <td>Em andamento</td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

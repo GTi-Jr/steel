@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <th>Nome</th>
+      <th>Usuário</th>
+      <th>Email</th>
+      <th>Tipo</th>
+      <th>Projetos ativos</th>
+      <th>Projetos</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+
+        <tr class="">
+          <td><%= link_to user.name, user_path(user) %></td>
+          <td><%= link_to user.username, user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= user.is_admin? ? "Administrador" : "Comum" %></td> 
+          <td>Adicionar</td>     
+          <td>Adicionar</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="text-center">
+  <%= link_to "Início", root_path, class: "btn btn-primary" %>
+</div>
