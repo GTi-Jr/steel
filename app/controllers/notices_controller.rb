@@ -7,7 +7,11 @@ class NoticesController < ApplicationController
   end
 
   def show
-    session[:notice_id] = params[:id]
+    if current_user.is_admin? || current_user.id == @notice.project.user.id
+      session[:notice_id] = params[:id]
+      @photos = Photo.where(notice_id: params[:id])
+      @documents = Document.where(document_id: params[:id])
+    end
   end
 
   def new
