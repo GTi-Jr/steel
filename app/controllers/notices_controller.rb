@@ -27,6 +27,7 @@ class NoticesController < ApplicationController
     @notice[:project_id] = session[:project_id]
 
     if @notice.save
+      NoticeMailer.notice_created_mail(@notice).deliver_later
       redirect_to project_path(@notice.project)
     else
       render :new
