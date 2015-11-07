@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def new
-      @user = User.new
+    @user = User.new
   end
 
   def edit
@@ -20,18 +20,19 @@ class UsersController < ApplicationController
 
   def update
       if @user.update_attributes(user_params)
-          redirect_to users_url
+        redirect_to users_url
       else
-          render :edit
+        render :edit
       end
   end
 
   def create
       @user = User.new(user_params)
       if @user.save
-          redirect_to customers_users_path
+        UserMailer.new_user_mail(@user).deliver_later
+        redirect_to customers_users_path
       else
-          render :new
+        render :new
       end
   end
 
@@ -55,6 +56,7 @@ class UsersController < ApplicationController
       @user[:admin] = true
 
       if @user.save
+        UserMailer.new_user_mail(@user).deliver_later
         redirect_to root_path
       else
         render "new"
