@@ -5,8 +5,9 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.new_user_mail.subject
   #
-  def new_user_mail(user)
+  def new_user_mail(user, password)
     @user = user
+    @password = password
 
     mail to: user.email, subject: "Sua conta da Ceará Steel foi criada"
   end
