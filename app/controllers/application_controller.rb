@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  layout :load_layout
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -24,5 +26,13 @@ class ApplicationController < ActionController::Base
                                                                   :password, 
                                                                   :password_confirmation, 
                                                                   :current_password) }
+  end
+
+  def load_layout
+    if current_user
+      "dashboard"
+    else
+      "application"
+    end
   end
 end

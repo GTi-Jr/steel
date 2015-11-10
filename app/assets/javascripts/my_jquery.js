@@ -1,11 +1,9 @@
 $( document ).ready(function() {
     var noticesBox = $('div.notices');
 
-    if (!(noticesBox.text() === '')){
+    if (noticesBox.text().trim()){
       noticesBox.show();
-    } else {
-      noticeBox.hide();
-    }
+    } 
 
     noticesBox.click(function(){
       noticesBox.hide();
