@@ -1,6 +1,4 @@
 class NoticeMailer < ApplicationMailer
-  default from: "user@example.com"
-
   def notice_created_mail(notice)
     @notice = notice
     @user = notice.project.user
