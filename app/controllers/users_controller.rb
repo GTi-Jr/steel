@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def new
-      @user = User.new
+    @user = User.new
   end
 
   def edit
@@ -20,19 +20,21 @@ class UsersController < ApplicationController
 
   def update
       if @user.update_attributes(user_params)
-          redirect_to users_url
+        redirect_to users_url
       else
-          render :edit
+        render :edit
       end
   end
 
   def create
-      @user = User.new(user_params)
-      if @user.save
-          redirect_to customers_users_path
-      else
-          render :new
-      end
+    generated_password = Devise.friendly_token.first(8)
+    @user = User.new(user_params(generated_password))
+    if @user.save
+      UserMailer.new_user_mail(@user, generated_password).deliver_later
+      redirect_to customers_users_path
+    else
+      render :new
+    end
   end
 
   def customers
@@ -51,10 +53,11 @@ class UsersController < ApplicationController
 
   def create_admin
     if current_user.is_admin?
-      @user = User.new(user_params)
+      generated_password = Devise.friendly_token.first(8)
+      @user = User.new(user_params(generated_password))
       @user[:admin] = true
-
       if @user.save
+        UserMailer.new_user_mail(@user, generated_password).deliver_later
         redirect_to root_path
       else
         render "new"
@@ -69,8 +72,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_params
-    params.require(:user).permit(:username,:name, :contact_name, :phone, :email,
-                                 :password, :password_confirmation)
+  def user_params(password)
+    params[:user][:password] = password
+    params.require(:user).permit(:username, :name, :contact_name, :phone, :email, :password)
   end
 end
