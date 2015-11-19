@@ -1,11 +1,17 @@
 $( document ).ready(function() {
-    var noticesBox = $('div.notices');
+    var noticesDiv = $('div.notices'),
+        notice = $('p.notice'),
+        alert = $('p.alert');
 
-    if (noticesBox.text().trim()){
-      noticesBox.show();
-    } 
+    if (notice.text().trim()) {
+      noticesDiv.show();
+      noticesDiv.addClass('notice-good');
+    } else if (alert.text().trim()) {
+      noticesDiv.show();
+      noticesDiv.addClass('notice-bad');
+    }
 
-    noticesBox.click(function(){
-      noticesBox.hide();
+    noticesDiv.click(function() {
+      noticesDiv.hide();
     });
 });
