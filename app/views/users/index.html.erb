@@ -10,14 +10,14 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-
-        <tr class="">
+        <% projects = user.projects %>
+        <tr class=<%= "border-left-green" if user.has_any_active_project? %>>
           <td><%= link_to user.name, user_path(user) %></td>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.email %></td>
           <td><%= user.is_admin? ? "Administrador" : "Comum" %></td> 
-          <td>Adicionar</td>     
-          <td>Adicionar</td>
+          <td><%= user.projects.where(completed: false).length %> </td>     
+          <td><%= user.projects.length %></td>
         </tr>
       <% end %>
     </tbody>
