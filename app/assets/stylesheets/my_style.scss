@@ -5,6 +5,18 @@
 .notices {
   width: 100%;
   display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+}
+
+.notice-good {
+  border-top: solid 3px #4cae4c;
+}
+
+.notice-bad {
+  border-top: solid 3px #d43f3a;
 }
 
 .top-10 {
