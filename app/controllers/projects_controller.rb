@@ -121,6 +121,10 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def query
+    @projects = Project.text_search(params[:query])
+  end
+
   private
     # Strong Parameters
     def project_params

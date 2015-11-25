@@ -67,6 +67,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def query
+    @users = User.text_search(params[:query])
+  end
+
   private
   def load_user
     @user = User.find(params[:id])

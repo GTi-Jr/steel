@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         post :create_admin
         get :customers
         get :admins
+        get :query
       end
     end
   end
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   resources :projects do    
     collection do
       get :canceled
+      get :query
     end
 
     member do
