@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true       
   has_many :projects
 
+  include PgSearch
+
+  pg_search_scope :search, against: [:name, :username, :contact_name, :email] 
+
   # Verifica se o usuário é administrador
   def is_admin?
     admin
@@ -18,4 +22,13 @@ class User < ActiveRecord::Base
     self.projects.each { |project| return true if project.uncompleted? }
     false
   end  
+
+  # 
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      scoped
+    end
+  end
 end
