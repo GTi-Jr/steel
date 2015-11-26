@@ -8,13 +8,13 @@ class NoticesController < ApplicationController
 
   def show
     session[:notice_id] = params[:id]
-    @photos = Photo.where(notice_id: session[:notice_id])
+    @attachments = Attachment.where(notice_id: session[:notice_id])
   end
 
   def new
     if current_user.is_admin?
       @notice = Notice.new
-      @photos = @notice.photos.build
+      @attachments = @notice.attachments.build
     else
       redirect_to project_path(Project.find(session[:project_id]))
     end
@@ -25,8 +25,8 @@ class NoticesController < ApplicationController
     @notice[:project_id] = session[:project_id]
 
     if @notice.save
-      params[:photos]['image'].each do |a|
-        @photos = @notice.photos.create!(:image => a)
+      params[:attachments]['image'].each do |a|
+        @attachments = @notice.attachments.create!(:image => a)
       end
       redirect_to project_path(@notice.project)
     else
@@ -65,7 +65,7 @@ class NoticesController < ApplicationController
 
   private
   def notice_params
-    params.require(:notice).permit(:title, :description, photos_attributes: [:id, :notice_id, :image])
+    params.require(:notice).permit(:title, :description, attachments_attributes: [:id, :notice_id, :image])
   end
 
   def load_notice

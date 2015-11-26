@@ -5,7 +5,7 @@
 <%= link_to "Início", root_path, class: "btn btn-primary" %>
 <%= link_to "Ver projeto", project_path(@notice.project), class: "btn btn-primary" %>
 <%= link_to "Ver cliente", user_path(@notice.project.user), class: "btn btn-primary" if current_user.is_admin? %>
-<% @photos.each do |p| %>
+<% @attachments.each do |p| %>
 <%= image_tag p.image %>
 <h4> <%= p.image.url %> </h4>
 <% end %>
