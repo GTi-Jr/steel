@@ -4,6 +4,7 @@ class NoticesController < ApplicationController
 
   def index
     @notices = Notice.where(project_id: session[:project_id])
+    
   end
 
   def show

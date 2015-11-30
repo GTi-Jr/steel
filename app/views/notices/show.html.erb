@@ -7,5 +7,5 @@
 <%= link_to "Ver cliente", user_path(@notice.project.user), class: "btn btn-primary" if current_user.is_admin? %>
 <% @attachments.each do |p| %>
 <%= image_tag p.image %>
-<h4> <%= p.image.url %> </h4>
+<h4> <%=link_to "arquivo",  p.image.url %> </h4
 <% end %>

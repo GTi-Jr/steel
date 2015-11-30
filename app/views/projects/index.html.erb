@@ -9,22 +9,23 @@
     <tbody>
       <% @projects.each do |project| %>
         <% if project.completed? %>
+        <%= options_from_collection_for_select (Project.all, :name)%>
           <tr>
-            <td><%= link_to project.name, project_path(project) %></td> 
-            <td><%= link_to project.user.name, user_path(project.user) %></td>     
+            <td><%= link_to project.name, project_path(project) %></td>
+            <td><%= link_to project.user.name, user_path(project.user) %></td>
             <td class="btn-success">Completado</td>
           </tr>
         <% elsif project.canceled? %>
           <tr>
-            <td><%= link_to project.name, project_path(project) %></td>    
-            <td><%= link_to project.user.name, user_path(project.user) %></td>     
-            <td class="btn-danger"><span >Cancelado</span></td>  
+            <td><%= link_to project.name, project_path(project) %></td>
+            <td><%= link_to project.user.name, user_path(project.user) %></td>
+            <td class="btn-danger"><span >Cancelado</span></td>
           </tr>
         <% else %>
           <tr>
             <td><%= link_to project.name, project_path(project) %></td>
-            <td><%= link_to project.user.name, user_path(project.user) %></td>     
-            <td class="btn-primary">Em andamento</td> 
+            <td><%= link_to project.user.name, user_path(project.user) %></td>
+            <td class="btn-primary">Em andamento</td>
           </tr>
         <% end %>
       <% end %>
