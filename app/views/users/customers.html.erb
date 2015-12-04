@@ -2,11 +2,11 @@
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
-      <th>Empresa</th>
-      <th>Usuário</th>
-      <th>Email</th>
-      <th>Telefone</th>
-      <th>Contato</th>
+      <th><%= t('user.name') %></th>
+      <th><%= t('user.username') %></th>
+      <th><%= t('user.email') %></th>
+      <th><%= t('user.phone') %></th>
+      <th><%= t('user.contact_name') %></th>
     </thead>
     <tbody>
       <% @users.each do |user| %>
@@ -22,5 +22,5 @@
   </table>
 </div>
 <div class="text-center">
-  <%= link_to "Início", root_path, class:"btn btn-primary" %>
+  <%= link_to t('buttons.home'), root_path, class:"btn btn-primary" %>
 </div>

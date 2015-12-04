@@ -1,0 +1,90 @@
+es:
+  menu:
+    actions: "Ações"
+    add_client: "Cadastrar cliente"
+    add_admin: "Cadastrar administrador"
+    see_clients: "Ver clientes"
+    see_admins: "Ver administradores"
+    all_users: "Todos os usuários"
+    all_projects: "Todos os projetos"
+    my_account: "Minha conta"
+    logged_as: "Logado como %{name}"
+    logout: "Sair"
+    portuguese: "Português"
+    english: "Inglês"
+    spanish: "Espanhol"
+    languages: "Idiomas" 
+
+  user:
+    name: "Empresa"
+    username: "Usuário"
+    contact_name: "Nome do contato"
+    email: "Email"
+    type: "Tipo"
+    projects: "Projetos"
+    phone: "Telefone"
+    new_password: "Nova senha"
+    password_confirmation: "Confirmação da senha"
+    current_password: "Senha atual"
+    admin: "Administrador"
+    common: "Comum"
+    client_register: "Cadatro de cliente"
+    admin_register: "Cadastro de administrador"
+
+  buttons:
+    home: "Início"
+    back: "Voltar"
+    create: "Cadastrar"
+    create_project: "Criar projeto"
+    update: "Atualizar"
+    add_notice: "Adicionar notificação"
+    see_client: "Ver cliente"
+    see_notice: "Ver notificação"
+    see_project: "Ver projeto"
+    complete: "Marcar projeto como completado"
+    uncomplete: "Mark project as imcomplete"
+    cancel: "Cancelar projeto"
+    reopen: "Reabrir projeto"
+    search: "Procurar"
+    click_to_close: "Clique para fechar"
+
+
+  project:
+    in_progress: "Em andamento"
+    canceled: "Cancelado"
+    completed: "Completado"
+    added_on: "Projeto adicionado em %{date}"
+    notices: "Notícias"
+    add_notice: "Adicionar notificação"
+    confirm_cancelation: "Tem certeza de que deseja cancelar este projeto?"
+    confirm_reopen: "Tem certeza de que deseja reabrir este projeto?"
+    confirm_delete_notice: "Apagar notícia?"
+    confirm_completed: "O projeto foi realmente completado?"
+    empty: "Nenhum projeto existente. Em breve seu projeto será adicionado pelo administrador."
+    create: "Cadastro de projeto"
+    description: "Descrição"
+    name: "Nome"
+
+  table:
+    active_projects: "Projetos ativos"
+    client_list: "Lista de clientes"
+    admin_list: "Lista de administradores"
+    all_users: "Todos os usuários"
+    all_projects: "Todos os projetos"    
+    status: "Status"
+    project: "Projeto"
+    client: "Cliente"
+    projects: "Projetos"
+
+  notice:
+    title: "Título"
+    edit_notice: "Editar notícia"
+    description: "Descrição"
+    edit: "Editar"
+
+
+
+
+
+
+

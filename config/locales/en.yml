@@ -1,23 +1,91 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  menu:
+    actions: "Actions"
+    add_client: "Create client"
+    add_admin: "Create administrator"
+    see_clients: "See clients"
+    see_admins: "See administrators"
+    all_users: "All users"
+    all_projects: "All projects"
+    my_account: "My account"
+    logged_as: "Logged as %{name}"
+    logout: "Log out"
+    portuguese: "Portuguese"
+    english: "English"
+    spanish: "Spanish"
+    languages: "Languages" 
+
+  user:
+    name: "Enterprise"
+    username: "User"
+    contact_name: "Contact name"
+    email: "Email"
+    type: "Type"
+    projects: "Projetcs"
+    phone: "Telephone"
+    new_password: "New password"
+    password_confirmation: "Password confirmation"
+    current_password: "Current Password"
+    admin: "Administrador"
+    common: "Comum"
+    client_register: "Cadatro de cliente"
+    admin_register: "Cadastro de administrador"
+
+  buttons:
+    home: "Home"
+    back: "Back"
+    create: "Create"
+    create_project: "Create project"
+    update: "Update"
+    add_notice: "Add notice"
+    see_client: "See client"
+    see_notice: "See notice"
+    see_project: "See project"
+    complete: "Mark project as completed"
+    uncomplete: "Mark project as imcomplete"
+    cancel: "Cancel project"
+    reopen: "Reopen project"
+    search: "Search"
+    click_to_close: "Click to close."
+
+  project:
+    in_progress: "In progress"
+    canceled: "Canceled"
+    completed: "Completed"
+    added_on: "Project added on %{date}"
+    notices: "Notices"
+    add_notice: "Add notice"
+    confirm_cancelation: "Are you sure you want to cancel this project?"
+    confirm_reopen: "Are you sure you want to reopen this project?"
+    confirm_delete_notice: "Delete notice?"
+    confirm_completed: "Is the project really finished?"    
+    empty: "No projects to show. Your project(s) will be soon added by the administrator."
+    create: "Project register"
+    description: "Description"
+    name: "Name"
+
+  table:
+    active_projects: "Active projects"
+    client_list: "Clients"
+    admin_list: "Adminitrators"
+    all_users: "All users"
+    all_projects: "All projects"
+    status: "Status"
+    project: "Project"
+    client: "Client"
+    projects: "Projetos"
+
+  notice:
+    title: "Title"
+    edit_notice: "Edit notice"
+    description: "Description"
+    edit: "Edit"
+    register: "Register"
+
+
+
+
+
+
+
+

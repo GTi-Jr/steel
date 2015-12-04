@@ -1,16 +1,16 @@
 <h3>
   <%= @project.name %>
-    <%= " - Terminado" if @project.completed? %>
-    <%= " - Cancelado" if @project.canceled? %>
+    <b><%= t('project.completed') if @project.completed? %></b>
+    <b><%= t('project.canceled') if @project.canceled? %></b>
 </h3>
 <p><%= link_to "Adicionar notificação", new_notice_path, class: "btn btn-success pull-right"  if current_user.is_admin? %></p>
 
 <div class="well">
   <p><%= @project.description %></p>  
-  <p class="pull-right small">Projeto adicionado em <%= @project.created_at.to_date %></p>
+  <p class="pull-right small"><%= t('project.added_on', date: @project.created_at.to_date) %></p>
 </div>
 <div class="text-center">
-  <h3>Notícias</h3>
+  <h3><%= t('project.notices') %></h3>
 </div>
 <div class="row">
 <% @notices.each do |notice| %>
@@ -29,7 +29,7 @@
               <% end %>
             </li>
             <li>
-              <%= link_to notice_path(notice), method: :delete, data: { confirm: "Apagar a notícia?" } do %>
+              <%= link_to notice_path(notice), method: :delete, data: { confirm: t('project.confirm_delete_notice') } do %>
                 <span class="glyphicon glyphicon-remove"></span>
               <% end %>
             </li>
@@ -40,7 +40,7 @@
         <p><%= truncate notice.description, length: 100 %></p>
       </div>
       <div class="panel-footer">
-        <%= link_to "Ver notificação", notice_path(notice) %>
+        <%= link_to t('buttons.see_notice'), notice_path(notice) %>
         <ul class="pull-right inline">
           <li><span class="glyphicon glyphicon-picture"></span><%= notice.photos.empty? ? '0' : notice.photos.length %></li>
           <li><span class="glyphicon glyphicon-text-size"></span><%= notice.documents.empty? ? '0' : notice.documents.length %></li>
@@ -52,18 +52,18 @@
 </div>
 
 <!-- Links -->
-<%= link_to "Início", root_path, class: "btn btn-primary" %>
+<%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
 <% if current_user.is_admin? %>
-  <%= link_to "Ver cliente", user_path(@project.user), class: "btn btn-primary" %>
+  <%= link_to t('buttons.see_client'), user_path(@project.user), class: "btn btn-primary" %>
   <% if @project.uncompleted? %>
-    <%= link_to "Marcar projeto como completado.", complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: "O projeto foi realmente complatado?" }  if @project.uncompleted? %>
+    <%= link_to t('buttons.complete'), complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: t('project.confirm_completed') }  if @project.uncompleted? %>
   <% else %>
-    <%= link_to "Marcar projeto como não completado.", uncomplete_project_path(@project), method: :patch, class: "btn btn-danger", data: { confirm: "Deseja reativar o projeto?" } if @project.completed? %>
+    <%= link_to t('buttons.uncomplete'), uncomplete_project_path(@project), method: :patch, class: "btn btn-danger", data: { confirm: t('project.confirm_reopen') } if @project.completed? %>
   <% end %>
   <% if @project.canceled? && @project.uncompleted? %>
-    <%= link_to "Reabrir projeto", uncancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: "Deseja reabrir o projeto?" } %>
+    <%= link_to t('buttons.reopen'), uncancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: t('project.confirm_reopen') } %>
   <% elsif @project.uncompleted? %>
-    <%= link_to "Cancelar projeto", cancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: "Deseja cancelar o projeto?" } %>
+    <%= link_to t('buttons.cancel'), cancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: t('project.confirm_cancelation') } %>
   <% end %>
 <% end %>
 

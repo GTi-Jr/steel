@@ -21,19 +21,19 @@
           <tr>
             <td><%= link_to project.name, project_path(project) %></td> 
             <td><%= link_to project.user.name, user_path(project.user) %></td>     
-            <td class="btn-success">Completado</td>
+            <td class="btn-success"><%= t('project.completed') %></td>
           </tr>
         <% elsif project.canceled? %>
           <tr>
             <td><%= link_to project.name, project_path(project) %></td>    
             <td><%= link_to project.user.name, user_path(project.user) %></td>     
-            <td class="btn-danger"><span >Cancelado</span></td>  
+            <td class="btn-danger"><span ><%= t('project.canceled') %></span></td>  
           </tr>
         <% else %>
           <tr>
             <td><%= link_to project.name, project_path(project) %></td>
             <td><%= link_to project.user.name, user_path(project.user) %></td>     
-            <td class="btn-primary">Em andamento</td> 
+            <td class="btn-primary"><%= t('project.in_progress') %></td> 
           </tr>
         <% end %>
       <% end %>
@@ -41,5 +41,5 @@
   </table>
 </div>
 <div class="text-center">
-  <%= link_to "Início", root_path, class: "btn btn-primary" %>
+  <%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
 </div>

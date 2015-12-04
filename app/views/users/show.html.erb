@@ -2,46 +2,46 @@
   <%= link_to "Criar projeto para #{@user.username}", new_project_path, class: "btn btn-success pull-right" %>
   <div class="row">
     <div class="well">
-      <p><span class="small">Empresa: </span><b><%= @user.name %></b></p>
-      <p><span class="small">Email: </span><b><%= @user.email %></b></p>
-      <p><span class="small">Telefone: </span><b><%= @user.phone %></b></p>
+      <p><span class="small"><%= t('user.name') %></span>:<b> <%= @user.name %></b></p>
+      <p><span class="small"><%= t('user.email') %></span>:<b> <%= @user.email %></b></p>
+      <p><span class="small"><%= t('user.phone') %></span>:<b> <%= @user.phone %></b></p>
     </div>      
   </div>
 
-  <h3>Projetos</h3>
+  <h3><%= t('table.projects') %></h3>
 
   <div class="table-responsive">
-  <% if @user.projects.empty? %>
-    <p class="text-center">Nenhum projeto existente. Em breve seu projeto será adicionado pelo administrador.</p>
-  <% else %>
-    <table class="table table-striped">
-      <thead>
-        <th>Nome</th>
-        <th>Status</th>
-      </thead>
-      <tbody>
-        <% @user.projects.each do |project| %>
-          <% if project.completed? %>
-            <tr>
-              <td><%= link_to project.name, project_path(project) %></td>   
-              <td class="btn-success">Completado</td>
-            </tr>
-          <% elsif project.canceled? %>
-            <tr>
-              <td><%= link_to project.name, project_path(project) %></td>    
-              <td class="btn-danger"><span >Cancelado</span></td>  
-            </tr>
-          <% else %>
-            <tr>
-              <td><%= link_to project.name, project_path(project) %></td>
-              <td class="btn-primary">Em andamento</td> 
-            </tr>
+    <% if @user.projects.empty? %>
+      <p class="text-center"><%= t('project.empty') %></p>
+    <% else %>
+      <table class="table table-striped">
+        <thead>
+          <th><%= t('table.project') %></th>
+          <th><%= t('table.status') %></th>
+        </thead>
+        <tbody>
+          <% @user.projects.each do |project| %>
+            <% if project.completed? %>
+              <tr>
+                <td><%= link_to project.name, project_path(project) %></td>   
+                <td class="btn-success"><%= t('project.completed') %></td>
+              </tr>
+            <% elsif project.canceled? %>
+              <tr>
+                <td><%= link_to project.name, project_path(project) %></td>    
+                <td class="btn-danger"><span ><%= t('project.canceled') %></span></td>  
+              </tr>
+            <% else %>
+              <tr>
+                <td><%= link_to project.name, project_path(project) %></td>
+                <td class="btn-primary"><%= t('project.in_progress') %></td> 
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
 
-  <%= link_to "Início", root_path, class: "btn btn-primary" %>
+  <%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
 </div>
