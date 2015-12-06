@@ -19,6 +19,7 @@ class PagesController < ApplicationController
       @projects = Project.where(["completed = :completed and canceled = :canceled",
                                 { completed: false,
                                   canceled: false }]).order("created_at DESC")
+                                .page(params[:page]).per_page(10)
     else
       redirect_to new_user_session_path
     end

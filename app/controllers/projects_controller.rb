@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   ## Caso usuário comum, lista apenas os próprios
   def index
     if current_user.is_admin?
-      @projects = Project.order("created_at DESC")
+      @projects = Project.order("created_at DESC").page(params[:page]).per_page(10)
     else
       @projects = Project.where(user_id: current_user.id).order("created_at DESC")
     end  
@@ -122,7 +122,7 @@ class ProjectsController < ApplicationController
   end
 
   def query
-    @projects = Project.text_search(params[:query])
+    @projects = Project.text_search(params[:query]).page(params[:page]).per_page(10)
 
     redirect_to projects_path if @projects.nil?
 

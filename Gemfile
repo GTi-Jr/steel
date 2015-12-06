@@ -23,6 +23,8 @@ gem 'devise', '~> 3.5.2'
 gem 'devise-i18n'
 
 gem 'pg_search'
+
+gem 'will_paginate', '~> 3.0.6'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
