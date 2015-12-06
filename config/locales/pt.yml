@@ -11,9 +11,10 @@ pt:
     logged_as: "Logado como %{name}"
     logout: "Sair"
     portuguese: "Português"
-    english: "Inglês"
-    spanish: "Espanhol"
-    languages: "Idiomas" 
+    english: "English"
+    spanish: "Español"
+    languages: "Idiomas"
+    locale_error: "Não foi possível alterar o idioma."
 
   user:
     name: "Empresa"
@@ -28,8 +29,11 @@ pt:
     current_password: "Senha atual"
     admin: "Administrador"
     common: "Comum"
-    client_register: "Cadatro de cliente"
+    client_register: "Cadastro de cliente"
     admin_register: "Cadastro de administrador"
+    password_minimum: " (pelo menos 8 caracteres)"
+    password_dont_change: "(Deixe em branco caso não queira alterar sua senha)"
+    password_change: "(Digite sua senha para realizar as modificações.)"
 
   buttons:
     home: "Início"
@@ -81,11 +85,3 @@ pt:
     description: "Descrição"
     edit: "Editar"
     register: "Cadastrar"
-
-
-
-
-
-
-
-

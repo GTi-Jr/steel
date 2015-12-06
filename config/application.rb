@@ -22,7 +22,11 @@ module Steel
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Configurar o horário
     config.time_zone= 'Brasilia'
-    config.i18n.default_locale = "pt"
+
+    # Condição para na tela de login as notificações aparecerem sempre em português.
+    config.i18n.default_locale = current_user.present? ? current_user.locale : "pt"
   end
 end

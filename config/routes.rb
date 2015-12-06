@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get '/change_locale/:locale', to: 'locale#change_locale', as: :change_locale
+  get '/language/:locale', to: 'locale#language', as: :language
 
   devise_scope :user do
     get 'log_in' => 'devise/sessions#new'
