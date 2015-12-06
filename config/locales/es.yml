@@ -1,7 +1,7 @@
 es:
     menu:
         actions: "Acciones"
-        add_client: "Registrarse"
+        add_client: "Registro cliente"
         add_admin: "Registro de administrador"
         see_clients: "Ver los clientes"
         see_admins: "Ver los administradores"
@@ -34,6 +34,7 @@ es:
         password_minimum: " (al menos 8 caracteres)"
         password_dont_change: "(Deje en blanco si no desea cambiar su contraseña)"
         password_change: "(Introduzca su contraseña para realizar las modificaciones)"
+        create_project: "Crear proyeto para %{name}"
 
     buttons:
         home: "Casa"

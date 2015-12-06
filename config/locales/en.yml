@@ -18,7 +18,7 @@ en:
 
   user:
     name: "Enterprise"
-    username: "User"
+    username: "Username"
     contact_name: "Contact name"
     email: "Email"
     type: "Type"
@@ -34,6 +34,7 @@ en:
     password_minimum: " (at least 8 characters)"
     password_dont_change: "Leave empty if you don't want to change your password"
     password_change: "Enter your password in to perform your modifications"
+    create_project: "Create project to %{name}"
 
 
   buttons:
@@ -47,7 +48,7 @@ en:
     see_notice: "See notice"
     see_project: "See project"
     complete: "Mark project as completed"
-    uncomplete: "Mark project as imcomplete"
+    uncomplete: "Mark project as incomplete"
     cancel: "Cancel project"
     reopen: "Reopen project"
     search: "Search"
@@ -72,7 +73,7 @@ en:
   table:
     active_projects: "Active projects"
     client_list: "Clients"
-    admin_list: "Adminitrators"
+    admin_list: "Administrators"
     all_users: "All users"
     all_projects: "All projects"
     status: "Status"

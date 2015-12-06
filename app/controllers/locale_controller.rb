@@ -1,6 +1,0 @@
-class LocaleController < ApplicationController
-  
-  
-
-
-end

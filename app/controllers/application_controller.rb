@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   layout :load_layout
-
+  
   after_action :set_locale
 
 

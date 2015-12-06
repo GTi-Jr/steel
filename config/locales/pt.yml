@@ -34,6 +34,7 @@ pt:
     password_minimum: " (pelo menos 8 caracteres)"
     password_dont_change: "(Deixe em branco caso não queira alterar sua senha)"
     password_change: "(Digite sua senha para realizar as modificações.)"
+    create_project: "Criar projeto para %{name}"
 
   buttons:
     home: "Início"
@@ -46,7 +47,7 @@ pt:
     see_notice: "Ver notificação"
     see_project: "Ver projeto"
     complete: "Marcar projeto como completado"
-    uncomplete: "Mark project as imcomplete"
+    uncomplete: "Marcar projeto como incompleto"
     cancel: "Cancelar projeto"
     reopen: "Reabrir projeto"
     search: "Procurar"

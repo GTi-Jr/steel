@@ -1,5 +1,5 @@
 <div class="container">
-  <%= link_to "Criar projeto para #{@user.username}", new_project_path, class: "btn btn-success pull-right" %>
+  <%= link_to t('user.create_project', name: @user.username), new_project_path, class: "btn btn-success pull-right" %>
   <div class="row">
     <div class="well">
       <p><span class="small"><%= t('user.name') %></span>:<b> <%= @user.name %></b></p>
