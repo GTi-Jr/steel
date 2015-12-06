@@ -1,29 +1,29 @@
 <h3 class="text-center">Projetos</h3>
 <div class="table-responsive">
   <% if @projects.empty? %>
-    <p class="text-center">Nenhum projeto existente. Em breve seu projeto será adicionado pelo administrador.</p>
+    <p class="text-center"><%= t('project.empty') %></p>
   <% else %>
     <table class="table table-striped">
       <thead>
-        <th>Nome</th>
-        <th>Status</th>
+        <th><%= t('table.project') %>Nome</th>
+        <th><%= t('table.status') %>Status</th>
       </thead>
       <tbody>
         <% @projects.each do |project| %>
           <% if project.completed? %>
             <tr class="bg-success">
               <td><%= link_to project.name, project_path(project) %></td>
-              <td>Completo</td>      
+              <td><%= t('project.completed') %></td>      
             </tr>
           <% elsif project.canceled? %>
             <tr class="bg-danger">
               <td><%= link_to project.name, project_path(project) %></td> 
-              <td>Cancelado</td>     
+              <td><%= t('project.canceled') %></td>     
             </tr>
           <% else %>
             <tr>
               <td><%= link_to project.name, project_path(project) %></td>  
-              <td>Em andamento</td>    
+              <td><%= t('project.in_progress') %></td>    
             </tr>
           <% end %>
         <% end %>

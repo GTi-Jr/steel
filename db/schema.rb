@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026201430) do
+ActiveRecord::Schema.define(version: 20151204021414) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "documents", force: :cascade do |t|
     t.string   "url"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151026201430) do
     t.integer  "notice_id"
   end
 
-  add_index "documents", ["notice_id"], name: "index_documents_on_notice_id"
+  add_index "documents", ["notice_id"], name: "index_documents_on_notice_id", using: :btree
 
   create_table "notices", force: :cascade do |t|
     t.string   "title"
@@ -30,7 +33,7 @@ ActiveRecord::Schema.define(version: 20151026201430) do
     t.integer  "project_id"
   end
 
-  add_index "notices", ["project_id"], name: "index_notices_on_project_id"
+  add_index "notices", ["project_id"], name: "index_notices_on_project_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.string   "url"
@@ -39,7 +42,7 @@ ActiveRecord::Schema.define(version: 20151026201430) do
     t.integer  "notice_id"
   end
 
-  add_index "photos", ["notice_id"], name: "index_photos_on_notice_id"
+  add_index "photos", ["notice_id"], name: "index_photos_on_notice_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at",                  null: false
@@ -51,7 +54,7 @@ ActiveRecord::Schema.define(version: 20151026201430) do
     t.boolean  "canceled",    default: false
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id"
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -71,9 +74,10 @@ ActiveRecord::Schema.define(version: 20151026201430) do
     t.string   "name"
     t.string   "contact_name"
     t.string   "phone"
+    t.string   "locale",                 default: "pt"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

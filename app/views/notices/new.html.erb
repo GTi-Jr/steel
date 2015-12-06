@@ -8,22 +8,22 @@
           <div class="panel-body">
             <%= form_for @notice do |f| %>
               <div class="form-group">
-                <%= f.label :title, "Título", class: "text-center" %><br />
+                <%= f.label :title, t('notice.title'), class: "text-center" %><br />
                 <%= f.text_field :title, autofocus: true, class: "form-control" %>
               </div>
               
               <div class="form-group">
-                <%= f.label :description, "Descrição", class: "text-center" %><br />
+                <%= f.label :description, t('notice.description'), class: "text-center" %><br />
                 <%= f.text_field :description, class: "form-control" %>
               </div>
 
               <div class="actions">
-                <%= f.submit "Sign up", value: "Cadastrar", class: "btn btn-lg btn-success btn-block" %>
+                <%= f.submit t('notice.register'), class: "btn btn-lg btn-success btn-block" %>
               </div>
             <% end %>
           </div>
         </div>
-        <p class="text-center"><%= link_to "Início", root_path, class: "btn btn-primary text" %></p>
+        <p class="text-center"><%= link_to t('buttons.home'), root_path, class: "btn btn-primary text" %></p>
       </div>
   </div>
 </div>

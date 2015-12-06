@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root 'pages#dashboard'
 
   devise_for :users
+
+  patch '/language/:locale', to: 'application#language', as: :language
+
   devise_scope :user do
     get 'log_in' => 'devise/sessions#new'
   end

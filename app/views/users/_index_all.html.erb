@@ -2,21 +2,21 @@
   <%= form_tag query_users_path, method: :get do %>
     <p>
       <%= text_field_tag :query, params[:query] %>
-      <%= submit_tag "Procurar", name: nil, class: "btn btn-primary" %>
+      <%= submit_tag t('buttons.search'), name: nil, class: "btn btn-primary" %>
     </p>
   <% end %>
 </div>
 
-<h3 class="text-center">Todos os usuários</h3>
+<h3 class="text-center"><%= t('table.all_users') %></h3>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
-      <th>Nome</th>
-      <th>Usuário</th>
-      <th>Email</th>
-      <th>Tipo</th>
-      <th>Projetos ativos</th>
-      <th>Projetos</th>
+      <th><%= t('user.name') %></th>
+      <th><%= t('user.username') %></th>
+      <th><%= t('user.email') %></th>
+      <th><%= t('user.type') %></th>
+      <th><%= t('table.active_projects') %></th>
+      <th><%= t('table.projects') %></th>
     </thead>
     <tbody>
       <% @users.each do |user| %>
@@ -25,7 +25,7 @@
           <td><%= link_to user.name, user_path(user) %></td>
           <td><%= link_to user.username, user_path(user) %></td>
           <td><%= user.email %></td>
-          <td><%= user.is_admin? ? "Administrador" : "Comum" %></td> 
+          <td><%= user.is_admin? ? t('user.admin') : t('user.common') %></td> 
           <td><%= user.projects.where(completed: false).length %> </td>     
           <td><%= user.projects.length %></td>
         </tr>
@@ -35,5 +35,5 @@
 </div>
 
 <div class="text-center">
-  <%= link_to "Início", root_path, class: "btn btn-primary" %>
+  <%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
 </div>

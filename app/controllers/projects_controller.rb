@@ -123,6 +123,10 @@ class ProjectsController < ApplicationController
 
   def query
     @projects = Project.text_search(params[:query])
+
+    redirect_to projects_path if @projects.nil?
+
+    
   end
 
   private
