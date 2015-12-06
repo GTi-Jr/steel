@@ -3,4 +3,9 @@ class Attachment < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  def getExtension
+
+
+  end
+
 end
