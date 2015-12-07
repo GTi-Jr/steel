@@ -86,6 +86,7 @@ pt:
     description: "Descrição"
     edit: "Editar"
     register: "Cadastrar"
+    documents: "Documentos"
 
   will_paginate:
     previous_label: "&#8592; Anterior"

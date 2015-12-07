@@ -16,6 +16,15 @@ ActiveRecord::Schema.define(version: 20151204021414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attachments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "notice_id"
+    t.string   "image"
+  end
+
+  add_index "attachments", ["notice_id"], name: "index_attachments_on_notice_id", using: :btree
+
   create_table "documents", force: :cascade do |t|
     t.string   "url"
     t.datetime "created_at", null: false
@@ -34,15 +43,6 @@ ActiveRecord::Schema.define(version: 20151204021414) do
   end
 
   add_index "notices", ["project_id"], name: "index_notices_on_project_id", using: :btree
-
-  create_table "photos", force: :cascade do |t|
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "notice_id"
-  end
-
-  add_index "photos", ["notice_id"], name: "index_photos_on_notice_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at",                  null: false

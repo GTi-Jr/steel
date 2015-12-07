@@ -9,6 +9,10 @@ gem 'rails', '4.2.4'
 
 gem 'pg'
 
+gem 'carrierwave'
+gem 'fog'
+gem 'protected_attributes'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -23,8 +27,8 @@ gem 'devise', '~> 3.5.2'
 gem 'devise-i18n'
 
 gem 'pg_search'
-
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+# gem 'will_paginate', '~> 3.0.6'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

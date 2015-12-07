@@ -6,17 +6,23 @@
               <h3 class="panel-title text-center">Cadastro de notícia</h3>
           </div>
           <div class="panel-body">
-            <%= form_for @notice do |f| %>
+            <%= form_for @notice, :html => {:multipart => true} do |f| %>
               <div class="form-group">
                 <%= f.label :title, t('notice.title'), class: "text-center" %><br />
                 <%= f.text_field :title, autofocus: true, class: "form-control" %>
               </div>
-              
+
               <div class="form-group">
                 <%= f.label :description, t('notice.description'), class: "text-center" %><br />
                 <%= f.text_field :description, class: "form-control" %>
               </div>
+              <%= f.fields_for :attachments do |p| %>
+                <div class = "form-group">
+                  <%= p.label :image %>
+                  <%= p.file_field :image, multiple: true, name:"attachments[image][]"%>
+                </div>
 
+              <% end %>
               <div class="actions">
                 <%= f.submit t('notice.register'), class: "btn btn-lg btn-success btn-block" %>
               </div>
@@ -27,4 +33,3 @@
       </div>
   </div>
 </div>
-

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates :username, uniqueness: true       
+  validates :username, uniqueness: true
   has_many :projects
 
   include PgSearch
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   # * A função pára no primeiro projeto que estiver incompleto
   # * Caso não haja projetos incompletos, retorna +false+
   def has_any_active_project?
-    self.projects.each { |project| return true if project.uncompleted? }
+    self.projects.each { |project| return true if project.uncompleted? || !project.canceled? }
     false
   end  
 

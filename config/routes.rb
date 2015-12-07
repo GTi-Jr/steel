@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :projects do    
+  resources :projects do
     collection do
       get :canceled
       get :query
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   resources :notices
-  resources :photos
+  resources :attachments
   resources :documents
 
   get '/dashboard' => 'pages#dashboard'
@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   #     post 'toggle'
   #   end
   #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  #   resources :attachments, concerns: :toggleable
 
   # Example resource route within a namespace:
   #   namespace :admin do

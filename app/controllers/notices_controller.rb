@@ -4,19 +4,18 @@ class NoticesController < ApplicationController
 
   def index
     @notices = Notice.where(project_id: session[:project_id])
+    
   end
 
   def show
-    if current_user.is_admin? || current_user.id == @notice.project.user.id
-      session[:notice_id] = params[:id]
-      @photos = Photo.where(notice_id: params[:id])
-      @documents = Document.where(document_id: params[:id])
-    end
+    session[:notice_id] = params[:id]
+    @attachments = Attachment.where(notice_id: session[:notice_id])
   end
 
   def new
     if current_user.is_admin?
       @notice = Notice.new
+      @attachments = @notice.attachments.build
     else
       redirect_to project_path(Project.find(session[:project_id]))
     end
@@ -28,21 +27,25 @@ class NoticesController < ApplicationController
 
     if @notice.save
       NoticeMailer.notice_created_mail(@notice).deliver_later
+      
+      params[:attachments]['image'].each do |a|
+        @attachments = @notice.attachments.create!(:image => a)
+      end
       redirect_to project_path(@notice.project)
     else
       render :new
     end
   end
 
-  def edit        
+  def edit
     @notice = Notice.find(params[:id])
   end
 
   def update
     if current_user.is_admin?
-      if @notice.update_attributes(notice_params)  
+      if @notice.update_attributes(notice_params)
         redirect_to project_path(@notice.project)
-      else  
+      else
         render :edit
       end
     else
@@ -65,7 +68,7 @@ class NoticesController < ApplicationController
 
   private
   def notice_params
-    params.require(:notice).permit(:title, :description)
+    params.require(:notice).permit(:title, :description, attachments_attributes: [:id, :notice_id, :image])
   end
 
   def load_notice
