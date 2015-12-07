@@ -92,3 +92,51 @@ es:
         previous_label: "&#8592; Anterior"
         next_label: "Siguiente &#8594;"
         page_gap: "..."
+
+    activerecord:
+        errors:
+          template:
+            header:
+              one:   "1 error prohibido este %{model} se guardara"
+              other: "%{count} errores prohíben este %{model} se guardara"
+            body:    "Hubo problemas con los siguientes campos:"
+          models:  
+            user:
+                attributes:
+                  email:
+                    blank: "no se llenó"
+                  username:
+                    blank: "no se llenó"
+                  name:
+                    blank: "no se llenó"
+                  contact_name:
+                    blank: "no se llenó"
+                  phone:
+                    blank: "no se llenó"
+                  current_password: 
+                    blank: "no se llenó"
+            notice:
+                attributes:
+                    title:
+                        blank: "no se llenó"
+                    description:
+                        blank: "no se llenó"
+            project:
+                attributes:
+                    name: 
+                        blank: "no se llenó"
+                    description:
+                        blank: "no se llenó"
+    models:
+      user: "Usuário"
+      notice: "Noticia"
+      project: "Proyeto"
+      attachment: "Anexo"
+    attributes:
+      email: "Email"
+      username: "Usuário"
+      name: "Nombre"
+      phone: "Teléfono"
+      current_password: "Contraseña actual"
+      title: "Título"
+      description: "Descripción"

@@ -33,7 +33,7 @@ en:
     admin_register: "Administrator register"
     password_minimum: " (at least 8 characters)"
     password_dont_change: "Leave empty if you don't want to change your password"
-    password_change: "Enter your password in to perform your modifications"
+    password_change: "Enter your password to perform your modifications"
     create_project: "Create project to %{name}"
 
 
@@ -93,6 +93,56 @@ en:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"
     page_gap: "..."
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "1 error prohibited this %{model} from being saved"
+          other: "%{count} errors prohibited this %{model} from being saved"
+        body:    "There were problems with the following fields:"
+      models:  
+        user:
+            attributes:
+              email:
+                blank: "wasn't filled"
+              username:
+                blank: "wasn't filled"
+              name:
+                blank: "wasn't filled"
+              contact_name:
+                blank: "wasn't filled"
+              phone:
+                blank: "wasn't filled"
+              current_password: 
+                blank: "wasn't filled"
+        notice:
+            attributes:
+                title:
+                    blank: "wasn't filled"
+                description:
+                    blank: "wasn't filled"
+        project:
+            attributes:
+                name: 
+                    blank: "wasn't filled"
+                description:
+                    blank: "wasn't filled"
+
+    models:
+      user: "User"
+      notice: "Notice"
+      project: "Project"
+      attachment: "Attachment"
+    attributes:
+      email: "Email"
+      username: "User"
+      name: "Name"
+      phone: "Telephone"
+      current_password: "Current Password"
+      title: "Title"
+      description: "Description"
+
 
 
 

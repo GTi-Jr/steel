@@ -92,3 +92,57 @@ pt:
     previous_label: "&#8592; Anterior"
     next_label: "Próximo &#8594;"
     page_gap: "..."
+
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "1 erro proibiu este %{model} de ser salvo"
+          other: "%{count} erros proibiram este %{model de ser salvo}"
+        body:    "Houve problemas nos seguintes campos:"
+      models:  
+        user:
+            attributes:
+              email:
+                blank: "não foi preenchido"
+              username:
+                blank: "não foi preenchido"
+              name:
+                blank: "não foi preenchida"
+              contact_name:
+                blank: "não foi preenchido"
+              phone:
+                blank: "não foi preenchido"
+              current_password: 
+                blank: "não foi preenchida"
+        notice:
+            attributes:
+                title:
+                    blank: "não foi preenchido"
+                description:
+                    blank: "não foi preenchido"
+        project:
+            attributes:
+                name: 
+                    blank: "não foi preenchido"
+                description:
+                    blank: "não foi preenchida"
+
+    models:
+      user: "Usuário"
+      notice: "Notícia"
+      project: "Projeto"
+      attachment: "Anexo"
+    attributes:
+      email: "Email"
+      username: "Usuário"
+      name: "Nome"
+      phone: "Telefone"
+      current_password: "Senha atual"
+      title: "Título"
+      description: "Descrição"
+
+
+
+    
+
