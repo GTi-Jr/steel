@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :load_user, only: [:show, :edit, :update]
   
   def index
-      @users = User.all
+      @users = User.all.page(params[:page]).per_page(10)
   end
 
   def show
@@ -38,11 +38,11 @@ class UsersController < ApplicationController
   end
 
   def customers
-    @users = User.where(admin: false)
+    @users = User.where(admin: false).page(params[:page]).per_page(10)
   end
 
   def admins
-    @users = User.where(admin: true)
+    @users = User.where(admin: true).page(params[:page]).per_page(10)
   end
 
   def new_admin
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   end
 
   def query
-    @users = User.text_search(params[:query])
+    @users = User.text_search(params[:query]).page(params[:page]).per_page(10)
   end
 
   private

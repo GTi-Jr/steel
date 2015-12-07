@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
+
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing 
         elit. Ut hendrerit maximus ex venenatis consequat. Quisque consequat 
         tempus magna, et placerat tortor imperdiet ac. Praesent vulputate 
@@ -26,15 +21,29 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing
         tincidunt. Pellentesque eu neque sapien. Maecenas auctor, leo in tincidunt 
         viverra, enim augue euismod ligula, eu ultrices purus nulla a lorem"
 
+
+# Cria administrador
 user = User.new(username: "csteel", name: "SteelService", contact_name: "Dono", email: "csteel@csteel.com", 
                 phone: "8512345678", admin: true, password: "senhatop", 
                 password_confirmation: "senhatop")
 user.save!
 
-(0..100).each do |i|
-  user = User.new(username: "User_#{i}", name: "Name_#{i}", contact_name: "Contact_#{i}", email: "email_#{i}@email.com", 
-                phone: "0000000000", password: "caiocaio", 
-                password_confirmation: "caiocaio")
+# Lê planilha que baixei
+file = File.read(Rails.root.join('lib', 'seeds', 'people.csv'))
+people = CSV.parse(file)
+# row[0] nomes
+# row[1] emails
+
+people.each do |row|
+  name = row[0]
+  username = row[1].split('@')[0]
+  email = row[1]
+  phone = row[2]
+
+  user = User.new(username: username, name: "Empresa do(a) #{name}", 
+                  contact_name: name, email: email, 
+                  phone: phone, password: "caiocaio", 
+                  password_confirmation: "caiocaio")
   user.save!
 
   (0..2).each do |j|
@@ -48,7 +57,6 @@ user.save!
                           project_id: project.id)
       notice.save!
     end
-
   end
-
 end
+

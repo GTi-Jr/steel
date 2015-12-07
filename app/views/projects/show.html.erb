@@ -3,7 +3,7 @@
     <b><%= t('project.completed') if @project.completed? %></b>
     <b><%= t('project.canceled') if @project.canceled? %></b>
 </h3>
-<p><%= link_to "Adicionar notificação", new_notice_path, class: "btn btn-success pull-right"  if current_user.is_admin? %></p>
+<p><%= link_to t('buttons.add_notice'), new_notice_path, class: "btn btn-success pull-right"  if current_user.is_admin? %></p>
 
 <div class="well">
   <p><%= @project.description %></p>  
@@ -42,7 +42,7 @@
       <div class="panel-footer">
         <%= link_to t('buttons.see_notice'), notice_path(notice) %>
         <ul class="pull-right inline">
-          <li><span class="glyphicon glyphicon-picture"></span><%= notice.photos.empty? ? '0' : notice.photos.length %></li>
+          <li><span class="glyphicon glyphicon-picture"></span><%= notice.attachments.empty? ? '0' : notice.attachments.length %></li>
           <li><span class="glyphicon glyphicon-text-size"></span><%= notice.documents.empty? ? '0' : notice.documents.length %></li>
         </ul>
       </div>
@@ -66,6 +66,3 @@
     <%= link_to t('buttons.cancel'), cancel_project_path(@project), method: :patch, class: "btn btn-danger pull-right", data: { confirm: t('project.confirm_cancelation') } %>
   <% end %>
 <% end %>
-
-
-

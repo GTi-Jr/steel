@@ -1,7 +1,26 @@
 <h3><%= @notice.title %></h3>
+
 <div class="well">
   <%= @notice.description %>
 </div>  
-<%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
-<%= link_to t('buttons.see_project'), project_path(@notice.project), class: "btn btn-primary" %>
-<%= link_to t('buttons.see_client'), user_path(@notice.project.user), class: "btn btn-primary" if current_user.is_admin? %>
+
+<div class="row-fluid">
+  <h3 align= "center"><%= t('notice.documents') %></h3>
+  <% @attachments.each do |p| %>
+    <%= link_to p.image.url, :target => "_blank" do %>
+      <% if p.image.url[-3..-1].eql? "pdf"%>
+        <span class="glyphicon glyphicon-file"  title="<%="#{p.image_identifier}" %>" style="font-size: 3em;color: #d9534f" ></span>
+      <%else%>
+      <span class="glyphicon glyphicon-picture" title="<%="#{p.image_identifier}" %>" style="font-size: 3em;color: #d9534f "></span>
+      <% end%>
+    <% end %>
+  <% end%>
+
+  <hr width = "100%" >
+</div>
+
+<div>
+  <%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
+  <%= link_to t('buttons.see_project'), project_path(@notice.project), class: "btn btn-primary" %>
+  <%= link_to t('buttons.see_client'), user_path(@notice.project.user), class: "btn btn-primary" if current_user.is_admin? %>
+</div>

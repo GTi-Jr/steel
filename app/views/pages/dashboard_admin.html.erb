@@ -31,5 +31,8 @@
       <% end %>
     </tbody>
   </table>
+  <div class="text-center">
+    <%= will_paginate @projects, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
 
