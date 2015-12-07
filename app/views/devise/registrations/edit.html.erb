@@ -1,50 +1,64 @@
-<h2><%= t('menu.my_account') %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :username, t('user.user_name') %><br />
-    <%= f.text_field :username, disabled: true %>
+<div class="container">
+  <div class="row ">
+      <h2 class="text-center"><%= t('menu.my_account') %></h2>
+      <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+          <div class="panel-heading">
+              <h3 class="panel-title text-center"><%= t('user.client_register') %></h3>
+          </div>
+          <div class="panel-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="field">
+                <%= f.label :username, t('user.user_name'), class: "text-center" %><br />
+                <%= f.text_field :username, disabled: true, class: "form-control" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :email, t('user.email'), class: "text-center" %><br />
+                <%= f.email_field :email, autofocus: true, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :name, t('user.name'), class: "text-center" %><br />
+                <%= f.text_field :name, class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :contact_name, t("user.contact_name"), class: "text-center" %><br />
+                <%= f.text_field :contact_name, class: "form-control" %>
+              </div>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+              <div class="field">
+                <%= f.label :password, t('user.new_password') + t('user.password_minimum'), class: "text-center" %> <i><%= t('user.password_dont_change') %></i><br />
+                <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation, t('user.password_confirmation'), class: "text-center" %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :current_password, t('user.current_password'), class: "text-center" %> <i><%= t('user.password_change') %></i><br />
+                <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit t('buttons.update'), class: "btn btn-lg btn-success btn-block" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <p class="text-center"><%= link_to t('buttons.home'), root_path, class: "btn btn-primary text" %></p>
+      </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email, t('user.email') %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :name, t('user.name') %><br />
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :contact_name, t("user.contact_name") %><br />
-    <%= f.text_field :contact_name %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password, t('user.new_password') + t('user.password_minimum') %> <i><%= t('user.password_dont_change') %></i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, t('user.password_confirmation') %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password, t('user.current_password') %> <i><%= t('user.password_change') %></i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t('buttons.update') %>
-  </div>
-<% end %>
-
-<%= link_to t('buttons.home'), root_path %>
