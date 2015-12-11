@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
       scoped
     end
   end
+
+  def has_project(project)
+    self.projects.include?(project)
+  end
 end

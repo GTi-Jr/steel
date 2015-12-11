@@ -3,6 +3,8 @@ class ProjectsController < ApplicationController
   before_action :load_project, only: [ :show, :edit, :update, :destroy, :complete, 
                                       :uncomplete, :cancel, :uncancel ]
 
+  before_action :check_user, only: [:show]
+
   # Lista todos os projetos
   ## Caso admin, lista todos
   ## Caso usuário comum, lista apenas os próprios
@@ -138,5 +140,9 @@ class ProjectsController < ApplicationController
     # Pega os parametros para carregar o projeto do banco de dados
     def load_project
       @project = Project.find(params[:id])
+    end
+
+    def check_user
+      redirect_to root_path unless current_user.has_project(@project)
     end
 end

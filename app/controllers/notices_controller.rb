@@ -1,6 +1,8 @@
 class NoticesController < ApplicationController
   layout "dashboard"
   before_action :load_notice, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:show]
+  before_action :admin_only, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @notices = Notice.where(project_id: session[:project_id])
@@ -13,12 +15,8 @@ class NoticesController < ApplicationController
   end
 
   def new
-    if current_user.is_admin?
-      @notice = Notice.new
-      @attachments = @notice.attachments.build
-    else
-      redirect_to project_path(Project.find(session[:project_id]))
-    end
+    @notice = Notice.new
+    @attachments = @notice.attachments.build
   end
 
   def create
@@ -45,15 +43,11 @@ class NoticesController < ApplicationController
   end
 
   def update
-    if current_user.is_admin?
       if @notice.update_attributes(notice_params)
         redirect_to project_path(@notice.project)
       else
         render :edit
       end
-    else
-      redirect_to root_path
-    end
   end
 
   def destroy
@@ -76,5 +70,13 @@ class NoticesController < ApplicationController
 
   def load_notice
     @notice = Notice.find(params[:id])
+  end
+
+  def check_user
+    redirect_to root_path unless current_user.has_project(@notice.project)
+  end
+
+  def admin_only
+    redirect_to root_path unless current_user.is_admin?
   end
 end
