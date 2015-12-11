@@ -22,7 +22,7 @@ en:
     contact_name: "Contact name"
     email: "Email"
     type: "Type"
-    projects: "Projetcs"
+    projects: "Projects"
     phone: "Telephone"
     new_password: "New password"
     password_confirmation: "Password confirmation"

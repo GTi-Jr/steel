@@ -1,12 +1,12 @@
-<h3 class="text-center">Projetos</h3>
+<h3 class="text-center"><%= t('user.projects') %></h3>
 <div class="table-responsive">
   <% if @projects.empty? %>
     <p class="text-center"><%= t('project.empty') %></p>
   <% else %>
     <table class="table table-striped">
       <thead>
-        <th><%= t('table.project') %>Nome</th>
-        <th><%= t('table.status') %>Status</th>
+        <th><%= t('table.project') %></th>
+        <th><%= t('table.status') %></th>
       </thead>
       <tbody>
         <% @projects.each do |project| %>

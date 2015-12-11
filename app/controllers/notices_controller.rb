@@ -28,9 +28,12 @@ class NoticesController < ApplicationController
     if @notice.save
       NoticeMailer.notice_created_mail(@notice).deliver_later
       
-      params[:attachments]['image'].each do |a|
-        @attachments = @notice.attachments.create!(:image => a)
+      if !params[:attachments].nil?
+        params[:attachments]['image'].each do |a|
+          @attachments = @notice.attachments.create!(:image => a)
+        end
       end
+      
       redirect_to project_path(@notice.project)
     else
       render :new
