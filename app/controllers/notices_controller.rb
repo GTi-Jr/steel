@@ -26,7 +26,7 @@ class NoticesController < ApplicationController
     if @notice.save
       NoticeMailer.notice_created_mail(@notice).deliver_later
       
-      if !params[:attachments].nil?
+      unless params[:attachments].nil?
         params[:attachments]['image'].each do |a|
           @attachments = @notice.attachments.create!(:image => a)
         end
@@ -52,14 +52,10 @@ class NoticesController < ApplicationController
 
   def destroy
     auxiliar_notice = @notice
-    if current_user.is_admin?
-      if @notice.destroy
-        redirect_to project_path(auxiliar_notice.project)
-      else
-        redirect_to project_path(auxiliar_notice.project)
-      end
+    if @notice.destroy
+      redirect_to project_path(auxiliar_notice.project)
     else
-      redirect_to root_path
+      redirect_to project_path(auxiliar_notice.project)
     end
   end
 
@@ -73,10 +69,10 @@ class NoticesController < ApplicationController
   end
 
   def check_user
-    redirect_to root_path unless current_user.has_project(@notice.project)
+    redirect_to root_path, notice: t('alerts.admin_privileges') unless current_user.has_project(@notice.project) || current_user.is_admin?
   end
 
   def admin_only
-    redirect_to root_path unless current_user.is_admin?
+    redirect_to root_path, notice: t('alerts.admin_privileges') unless current_user.is_admin?
   end
 end

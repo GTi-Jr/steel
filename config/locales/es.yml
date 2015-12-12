@@ -52,6 +52,7 @@ es:
         reopen: "Abrir"
         search: "Obtener"
         click_to_close: "Haga clic en cerrar"
+        edit: "Editar"
 
     project:
         in_progress: "En progreso"
@@ -92,6 +93,10 @@ es:
         previous_label: "&#8592; Anterior"
         next_label: "Siguiente &#8594;"
         page_gap: "..."
+
+    alerts:
+        admin_privileges: "Usted no tiene los privilegios necesarios."
+
 
     activerecord:
         errors:

@@ -3,7 +3,9 @@ class ProjectsController < ApplicationController
   before_action :load_project, only: [ :show, :edit, :update, :destroy, :complete, 
                                       :uncomplete, :cancel, :uncancel ]
 
+  before_action :admin_only, except: [:show]
   before_action :check_user, only: [:show]
+
 
   # Lista todos os projetos
   ## Caso admin, lista todos
@@ -24,31 +26,22 @@ class ProjectsController < ApplicationController
 
   #Página para criar um projeto
   def new
-    if current_user.is_admin?
-      @project = Project.new
-    else
-      redirect_to root_path
-    end
+    @project = Project.new
   end
 
   #Cria um projeto
   def create
-    if current_user.is_admin?
-      @project = Project.new(project_params)
-      @project[:user_id] = session[:user_id]
-      if @project.save
-        redirect_to root_path
-      else
-        render "new"
-      end
-    else
+    @project = Project.new(project_params)
+    @project[:user_id] = session[:user_id]
+    if @project.save
       redirect_to root_path
+    else
+      render "new"
     end
   end
 
   #Página para editar um projeto
   def edit
-    redirect_to root_path unless current_user.is_admin?
   end
 
   def update
@@ -143,6 +136,10 @@ class ProjectsController < ApplicationController
     end
 
     def check_user
-      redirect_to root_path unless current_user.has_project(@project)
+      redirect_to root_path, notice: t('alerts.admin_privileges') unless current_user.has_project(@project) || current_user.is_admin?
+    end
+
+    def admin_only
+      redirect_to root_path, notice: t('alerts.admin_privileges') unless current_user.is_admin?
     end
 end

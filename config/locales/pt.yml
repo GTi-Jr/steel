@@ -52,6 +52,7 @@ pt:
     reopen: "Reabrir projeto"
     search: "Procurar"
     click_to_close: "Clique para fechar"
+    edit: "Editar"
 
   project:
     in_progress: "Em andamento"
@@ -92,6 +93,9 @@ pt:
     previous_label: "&#8592; Anterior"
     next_label: "Próximo &#8594;"
     page_gap: "..."
+
+  alerts:
+    admin_privileges: "Você não possui os privilégios necessários."
 
   activerecord:
     errors:
