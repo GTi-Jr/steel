@@ -2,9 +2,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  validates :username, uniqueness: true
+         :recoverable, :rememberable, :trackable, :validatable,
+         authentication_keys: [:login]
+  validates :username, uniqueness: { case_sensitive: false }
   has_many :projects
+
+  attr_accessor :login
 
   include PgSearch
 
@@ -35,5 +38,16 @@ class User < ActiveRecord::Base
   # Verifica se :project pertence ao usuário
   def has_project(project)
     self.projects.include?(project)
+  end
+
+  # Override da função do Devise para que seja possível fazer login
+  # tanto com email quanto com usuário
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    else
+      where(conditions).first
+    end
   end
 end
