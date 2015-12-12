@@ -7,8 +7,10 @@ gem 'rails', '4.2.4'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# PostgreSQL
 gem 'pg'
 
+# Uploads
 gem 'carrierwave'
 gem 'fog'
 gem 'protected_attributes'
@@ -21,12 +23,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-#Autenticação de usuários
+# Autenticação de usuários
 gem 'devise', '~> 3.5.2'
-
+# Tradução do Devise
 gem 'devise-i18n'
 
+# Gem de buscas no PostgreSQL
 gem 'pg_search'
+
+# Gem para paginação
 gem 'will_paginate-bootstrap'
 # gem 'will_paginate', '~> 3.0.6'
 # Use ActiveModel has_secure_password
@@ -61,6 +66,7 @@ group :development do
   gem 'spring'
 end
 
+# HEROKU
 group :production do
   gem 'rails_12factor'
 end

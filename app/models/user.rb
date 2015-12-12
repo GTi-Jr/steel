@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   include PgSearch
 
+  # Padrões de pesquisa:
+  # Pesquisa pelo :name e :username, :contact_name e :email
   pg_search_scope :search, against: [:name, :username, :contact_name, :email] 
 
   # Verifica se o usuário é administrador
@@ -23,13 +25,14 @@ class User < ActiveRecord::Base
     false
   end  
 
-  # 
+  # método da gem pg_search
   def self.text_search(query)
     if query.present?
       search(query)
     end
   end
 
+  # Verifica se :project pertence ao usuário
   def has_project(project)
     self.projects.include?(project)
   end

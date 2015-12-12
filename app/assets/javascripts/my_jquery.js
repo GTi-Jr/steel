@@ -1,3 +1,5 @@
+// Caso tenha algum alerta, irá aparecer na tela
+// Se esse alerta for clicado, ele irá fechar
 $( document ).ready(function() {
     var noticesDiv = $('div.notices'),
         notice = $('p.notice'),
