@@ -60,3 +60,18 @@ people.each do |row|
   end
 end
 
+people.each do |row|
+  name = row[0]
+  username = row[1].split('@')[0]
+  email = row[1]
+  phone = row[2]
+
+  user = User.new(username: "#{username}_admin", name: "Administrador(a) #{name}", 
+                  contact_name: "#{name} - adm", email: "adm_#{email}", 
+                  phone: phone, password: "caiocaio", 
+                  password_confirmation: "caiocaio", admin: true)
+  user.save!
+end
+
+
+
