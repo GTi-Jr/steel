@@ -5,8 +5,7 @@ class NoticesController < ApplicationController
   before_action :admin_only, only: [:new, :edit, :create, :update, :destroy]
 
   def index
-    @notices = Notice.where(project_id: session[:project_id])
-    
+    @notices = Notice.where(project_id: session[:project_id])    
   end
 
   def show
@@ -39,7 +38,6 @@ class NoticesController < ApplicationController
   end
 
   def edit
-    @notice = Notice.find(params[:id])
   end
 
   def update

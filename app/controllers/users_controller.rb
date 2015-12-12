@@ -2,9 +2,10 @@ class UsersController < ApplicationController
   layout "dashboard"
 
   before_action :load_user, only: [:show, :edit, :update]
+  before_action :admin_only, except: [:edit, :update]
   
   def index
-      @users = User.all.page(params[:page]).per_page(10)
+    @users = User.all.page(params[:page]).per_page(10)
   end
 
   def show
@@ -15,17 +16,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-  end
-
-  def update
-      if @user.update_attributes(user_params)
-        redirect_to users_url
-      else
-        render :edit
-      end
-  end
-
   def create
     generated_password = Devise.friendly_token.first(8)
     @user = User.new(user_params(generated_password))
@@ -34,6 +24,17 @@ class UsersController < ApplicationController
       redirect_to customers_users_path
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update_attributes(user_params)
+      redirect_to users_url
+    else
+      render :edit
     end
   end
 
@@ -68,7 +69,13 @@ class UsersController < ApplicationController
   end
 
   def query
-    @users = User.text_search(params[:query]).page(params[:page]).per_page(10)
+    query = params[:query]
+
+    if query.present?
+      @users = User.text_search(query).page(params[:page]).per_page(10)
+    else
+      @users = nil
+    end
   end
 
   private
@@ -79,5 +86,9 @@ class UsersController < ApplicationController
   def user_params(password)
     params[:user][:password] = password
     params.require(:user).permit(:username, :name, :contact_name, :phone, :email, :password)
+  end
+
+  def admin_only
+    redirect_to root_path, notice: t('alerts.admin_privileges') unless current_user.is_admin?
   end
 end

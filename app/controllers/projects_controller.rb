@@ -117,11 +117,13 @@ class ProjectsController < ApplicationController
   end
 
   def query
-    @projects = Project.text_search(params[:query]).page(params[:page]).per_page(10)
+    query = params[:query]
 
-    redirect_to projects_path if @projects.nil?
-
-    
+    if query.present?
+      @projects = Project.text_search(query).page(params[:page]).per_page(10)
+    else
+      @projects = nil
+    end
   end
 
   private

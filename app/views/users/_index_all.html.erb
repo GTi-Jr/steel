@@ -19,20 +19,22 @@
       <th><%= t('table.projects') %></th>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
-        <% projects = user.projects %>
-        <tr class=<%= "border-left-green" if user.has_any_active_project? %>>
-          <td><%= link_to user.name, user_path(user) %></td>
-          <td><%= link_to user.username, user_path(user) %></td>
-          <td><%= user.email %></td>
-          <td><%= user.is_admin? ? t('user.admin') : t('user.common') %></td> 
-          <td><%= user.projects.where(completed: false).length %> </td>     
-          <td><%= user.projects.length %></td>
-        </tr>
+      <% if @users %>
+        <% @users.each do |user| %>
+          <% projects = user.projects %>
+          <tr class=<%= "border-left-green" if user.has_any_active_project? %>>
+            <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= link_to user.username, user_path(user) %></td>
+            <td><%= user.email %></td>
+            <td><%= user.is_admin? ? t('user.admin') : t('user.common') %></td> 
+            <td><%= user.projects.where(completed: false).length %> </td>     
+            <td><%= user.projects.length %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @projects, class: "text-center" %>
+  <%= will_paginate @projects, class: "text-center" if @users %>
 </div>
 
 
