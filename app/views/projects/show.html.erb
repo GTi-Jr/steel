@@ -55,6 +55,7 @@
 <%= link_to t('buttons.home'), root_path, class: "btn btn-primary" %>
 <% if current_user.is_admin? %>
   <%= link_to t('buttons.see_client'), user_path(@project.user), class: "btn btn-primary" %>
+  <%= link_to t('buttons.edit'), edit_project_path(@project), class: "btn btn-primary" %>
   <% if @project.uncompleted? %>
     <%= link_to t('buttons.complete'), complete_project_path(@project), method: :patch, class: "btn btn-success", data: { confirm: t('project.confirm_completed') }  if @project.uncompleted? %>
   <% else %>

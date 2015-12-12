@@ -22,7 +22,7 @@ en:
     contact_name: "Contact name"
     email: "Email"
     type: "Type"
-    projects: "Projetcs"
+    projects: "Projects"
     phone: "Telephone"
     new_password: "New password"
     password_confirmation: "Password confirmation"
@@ -53,6 +53,7 @@ en:
     reopen: "Reopen project"
     search: "Search"
     click_to_close: "Click to close."
+    edit: "Edit"
 
   project:
     in_progress: "In progress"
@@ -93,6 +94,9 @@ en:
     previous_label: "&#8592; Previous"
     next_label: "Next &#8594;"
     page_gap: "..."
+
+  alerts:
+    admin_privileges: "You don't have the privileges to access this area."
 
   activerecord:
     errors:

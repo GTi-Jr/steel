@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   
   
   protected
+  # Checa os parâmetros permitidos nos três métodos abaixo
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :name,
                                                             :contact_name, :phone,
@@ -43,6 +44,8 @@ class ApplicationController < ActionController::Base
                                                                   :current_password) }
   end
 
+  # Caso esteja logado, o layout será dashboard, caso contrário, será
+  # um layout em branco
   def load_layout
     if current_user
       "dashboard"
@@ -53,6 +56,8 @@ class ApplicationController < ActionController::Base
 
 
   private
+  # Define o locale do sistema de acordo com o locale guardado
+  # no banco de dados do usuário
   def set_locale
     if current_user.present?
       I18n.locale = current_user.locale

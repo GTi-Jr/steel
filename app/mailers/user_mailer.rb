@@ -1,10 +1,8 @@
 class UserMailer < ApplicationMailer
-
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.new_user_mail.subject
-  #
+  # Recebe nos parâmetros o usuário e a senha e então envia um email
+  # contendo seu login e sua senha.
+  # OBS: Não adianta utilizar apenas usuário como parâmetro, pois a senha dentro do
+  # objeto virá criptografada.
   def new_user_mail(user, password)
     @user = user
     @password = password
