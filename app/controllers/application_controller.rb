@@ -54,8 +54,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-  private
   # Define o locale do sistema de acordo com o locale guardado
   # no banco de dados do usuário
   def set_locale
