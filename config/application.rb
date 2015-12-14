@@ -28,5 +28,6 @@ module Steel
 
     # Condição para na tela de login as notificações aparecerem sempre em português.
     config.i18n.default_locale = "pt"
+    config.i18n.locale = "pt"
   end
 end
