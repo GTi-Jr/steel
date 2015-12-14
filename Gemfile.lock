@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/svenfuchs/i18n.git
+  revision: f19893d84262261d9c8abe303f465ea28ba057e4
+  specs:
+    i18n (0.7.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -188,7 +194,6 @@ GEM
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
     jbuilder (2.3.2)
@@ -312,6 +317,7 @@ DEPENDENCIES
   devise (~> 3.5.2)
   devise-i18n
   fog
+  i18n!
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails

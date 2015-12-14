@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   # Checa se o parâmetro é permitido, então muda locale para ele.
   def language
     locale = params[:locale]
-    options = ["pt", "en", "es"]
+    options = ["pt-BR", "en-US", "es-ES"]
 
     if options.include?(locale) && current_user.update_attributes(locale: locale)
       redirect_to :back

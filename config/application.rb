@@ -27,6 +27,10 @@ module Steel
     config.time_zone= 'Brasilia'
 
     # Condição para na tela de login as notificações aparecerem sempre em português.
-    I18n.default_locale = "pt"
+    # I18n.default_locale = :'pt-BR'
+
+    config.i18n.enforce_available_locales = false
+    config.i18n.available_locales = ["pt-BR", "en-US", "es-ES"]
+    config.i18n.default_locale = :'pt-BR'
   end
 end

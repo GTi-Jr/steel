@@ -1,4 +1,4 @@
-es:
+es-ES:
     menu:
         actions: "Acciones"
         add_client: "Registro cliente"
@@ -9,6 +9,7 @@ es:
         all_projects: "Todos los proyectos"
         my_account: "Mi cuenta"
         logged_as: "Conectado como %{name}"
+        logout: "Salir"
         Cerrar sesión: "Cerrar la sesión"
         portuguese: "Português"
         english: "English"
