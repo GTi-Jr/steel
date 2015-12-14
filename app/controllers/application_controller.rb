@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
     if current_user.present?
       I18n.locale = current_user.locale
     else
-      I18n.locale = I18n.default_locale
+      I18n.locale = :'pt-BR' # I18n.default_locale
     end
   end
 end
