@@ -1,3 +1,5 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
 # Utilize-o em 'config/locales/', com o nome de 'devise.pt-BR.yml'.
 # Em 'config/application.rb', utilize => config.i18n.default_locale = :'pt-BR'
 
@@ -10,10 +12,10 @@ pt-BR:
     failure:
       already_authenticated: "Você já está logado."
       inactive: "Sua conta ainda não foi ativada."
-      invalid: "Usuário ou senha inválidos."
+      invalid: "Email ou senha inválidos."
       locked: "Sua conta está bloqueada."
       last_attempt: "Você possui apenas uma tentativa, antes de sua conta ser bloqueada."
-      not_found_in_database: "Usuário ou senha inválidos."
+      not_found_in_database: "Email ou senha inválidos."
       timeout: "Sua sessão expirou, faça login novamente para continuar."
       unauthenticated: "Você precisa fazer login ou se registrar, antes de continuar."
       unconfirmed: "Você precisa confirmar sua conta, antes de continuar."

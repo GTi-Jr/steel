@@ -138,13 +138,14 @@ pt-BR:
       project: "Projeto"
       attachment: "Anexo"
     attributes:
-      email: "Email"
-      username: "Usuário"
-      name: "Nome"
-      phone: "Telefone"
-      current_password: "Senha atual"
-      title: "Título"
-      description: "Descrição"
+      user:
+        email: "Email"
+        username: "Usuário"
+        name: "Nome"
+        phone: "Telefone"
+        current_password: "Senha atual"
+        title: "Título"
+        description: "Descrição"
 
 
 

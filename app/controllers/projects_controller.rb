@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   # Insere na sessão o ID do projeto
   # Carrega as notícias referentes ao projeto
   def show
+    redirect_to root_path if @project.nil?
     session[:project_id] = params[:id]
     @notices = @project.notices.order("created_at DESC")
   end

@@ -4,17 +4,17 @@
 
 .notices {
   width: 100%;
-  min-height: 50px;
+  min-height: 25px;
   display: none;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   background-color: white;
   z-index: 10;
 }
 
 .notice-good {
-  border-top: solid 3px #4cae4c;
+  border-bottom: solid 3px #4cae4c;
 }
 
 .notice-bad {
